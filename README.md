@@ -1,5 +1,5 @@
 # todo-ninja
-
+Estudo <a href="https://www.youtube.com/playlist?list=PL4cUxeGkcC9g0MQZfHwKcuB0Yswgb3gA5">aqui</a>
 ## Project setup
 ```
 npm install
