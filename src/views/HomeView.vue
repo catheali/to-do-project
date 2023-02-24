@@ -30,7 +30,7 @@
     small
     dark
     color="purple">
-      <v-icon >mdi-music</v-icon>
+    <v-icon >mdi-music</v-icon>
     </v-btn>
 
     <v-alert 
