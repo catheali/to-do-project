@@ -1,5 +1,4 @@
 export default {
-    drawer: false,
     links: [
         {icon: 'mdi-view-dashboard', text: 'Dashboard', route: '/'},
         {icon:'mdi-folder', text:'My Projects', route:'/projects'},

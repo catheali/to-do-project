@@ -21,7 +21,7 @@
     </v-icon>
     </v-btn>
    </v-app-bar>
-   <v-navigation-drawer v-model="getDrawer" app dark >
+   <v-navigation-drawer v-model="drawer" app dark >
     <v-list>
       <v-list-item v-for="link in getNavBar" :key="link.text" router :to="link.route">
         <v-list-item-action>
@@ -37,13 +37,20 @@
 </template>
 
 <script >
-    import { mapGetters, mapActions } from 'vuex';
+    import { mapGetters } from 'vuex';
 export default {
+  data() {
+    return {
+      drawer: false
+    }
+  },
   computed: {
-            ...mapGetters('navbar',['getDrawer', 'getNavBar'])
+            ...mapGetters('navbar',['getNavBar'])
         },
   methods: {
-    ...mapActions('navbar', ['showDrawer'])
+     showDrawer( ) {
+      this.drawer = !this.drawer
+    }
   }
 }
 </script>
