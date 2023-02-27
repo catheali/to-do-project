@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import dashboard from './modules/dashboard'
+import navigationbar from './modules/navigationbar'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+const createStore = () => {
+  return new Vuex.Store({
+ modules: {
+  dashboard: dashboard,
+  navbar: navigationbar,
+ }
 })
+}
+
+export default createStore
