@@ -1,24 +1,24 @@
 <template>
     <div class="dashboard">
         <h1 class="subheading grey--text">Dashboard</h1>   
-        <v-container class="my-5">  
-          <v-card flat class="pa3 pink lighten-4">
+        <v-container class="my-5 ">  
+          <v-card v-for=" project in getProjects" :key="project.title" flat class="px-3">
             <v-row wrap>
-                <v-col cols="12" md="6">
+                <v-col cols="12" md="6" :class="`pl-3 project ${project.status}`">
                     <div class="caption grey--text">Project Title</div>
-                    <div>Create a new </div>
+                    <div>{{project.title}} </div>
                 </v-col>
                 <v-col cols="6" sm="4" md="2">
                     <div class="caption grey--text">Person</div>
-                    <div>The Next Ninja </div>
+                    <div>{{project.person}} </div>
                 </v-col>
                 <v-col cols="6" sm="4" md="2">
                     <div class="caption grey--text">Due by</div>
-                    <div> 1st Jan 2024 </div>
+                    <div> {{project.due}} </div>
                 </v-col>
                 <v-col cols="4" sm="4" md="2">
                     <div class="caption grey--text">Status</div>
-                    <div>On going</div>
+                    <div>{{project.status}}</div>
                 </v-col>
             </v-row>
           </v-card> 
@@ -27,9 +27,11 @@
     </template>
     
 <script>
-   
+   import { mapGetters } from 'vuex';
 export default {
-       
+       computed: {
+        ...mapGetters('dashboard',['getProjects'])
+       }
     }
 </script>
     
