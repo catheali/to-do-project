@@ -23,6 +23,9 @@
     app
     dark
     v-model="drawer">
+      <v-col align-center>
+        oi
+      </v-col>
       <v-list>
         <v-list-item 
         v-for="link in getNavBar" 
