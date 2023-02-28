@@ -21,22 +21,15 @@
     </v-app-bar>
     <v-navigation-drawer 
     app
-    
     v-model="drawer">
-    
       <v-container>
         <v-col>
           <v-avatar  size="200">
-      <img
-     
-        src="http://4.bp.blogspot.com/-YZI_7MCsyXM/Ur4fi-0BulI/AAAAAAAABaw/ct-7GYHwzrk/s1600/bruxa.jpg"
-        alt="bruxa"
-      >
+      <img src="http://4.bp.blogspot.com/-YZI_7MCsyXM/Ur4fi-0BulI/AAAAAAAABaw/ct-7GYHwzrk/s1600/bruxa.jpg" alt="bruxa">
     </v-avatar>
     <v-subheader class="justify-center">Admin User</v-subheader>
         </v-col>
       </v-container>
-
       <v-list >
         <v-list-item 
         v-for="link in getNavBar" 
