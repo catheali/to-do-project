@@ -1,5 +1,5 @@
 # todo-ninja
-Estudo <a href="https://www.youtube.com/playlist?list=PL4cUxeGkcC9g0MQZfHwKcuB0Yswgb3gA5">aqui</a>
+Estudo <a href="https://www.youtube.com/playlist?list=PL4cUxeGkcC9g0MQZfHwKcuB0Yswgb3gA5">aqui</a> 22
 
 dá pra tentar criar um crud de usuarios, alunos e cursos igual aquele em php. Melhor ainda aproveitar aquela api lá, geniaaaal ;-;.
 ## Project setup

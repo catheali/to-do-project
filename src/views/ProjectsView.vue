@@ -4,11 +4,16 @@
     <v-container class="my-5">
   <v-expansion-panels focusable>
     <v-expansion-panel
-      v-for="(item,i) in 5"
-      :key="i">
-      <v-expansion-panel-header>Item</v-expansion-panel-header>
-      <v-expansion-panel-content>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      v-for="project in getProjects"
+      :key="project.title">
+      <v-expansion-panel-header>{{ project.title }} <span class="text-end">
+        {{ project.person }}
+      </span></v-expansion-panel-header>
+      <v-expansion-panel-content >
+        <div> <span class="caption grey--text "> Due by {{ project.due }}</span> </div>
+        <div>
+          {{ project.content }}
+        </div>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -18,12 +23,12 @@
 </template>
 
 <script >
+import { mapGetters } from 'vuex';
 export default {
-data() {
-  return{
-    item: [ 'item']
-  }
-}
+computed: {
+  ...mapGetters('dashboard',['getProjects'])
+},
+
 }
 </script>
 

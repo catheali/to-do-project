@@ -56,7 +56,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('navbar', ['getNavBar'])
+    ...mapGetters('navbar', ['getNavBar'] )
   },
   methods: {
     showDrawer() {
