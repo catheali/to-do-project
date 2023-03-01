@@ -75,7 +75,7 @@ export default {
       return this.due ? moment(this.due).format("Do MMMM YYYY") : "";
     }
   },
-  methods: {
+  methods: { 
     submitForm() {
       if (this.$refs.form.validate()){
         console.log(this.title, this.content, this.due)
