@@ -13,8 +13,12 @@
       <v-spacer></v-spacer>
     <v-menu offset-y >
       <template v-slot:activator="{on}">
-      <v-btn text v-on="on" color="grey">
-        <v-icon left>mdi-menu-down</v-icon>
+      <v-btn 
+      text 
+      v-on="on" 
+      color="grey">
+        <v-icon 
+        left>mdi-menu-down</v-icon>
         <span>menu</span>
       </v-btn>
     </template>
@@ -36,7 +40,8 @@
       <v-btn 
       text color="grey">
         <span>Sign out</span>
-        <v-icon right>
+        <v-icon 
+        right>
           mdi-logout
         </v-icon>
       </v-btn>
@@ -52,6 +57,13 @@
     <v-subheader class="justify-center">Bruxa das Terras Abandonadas</v-subheader>
         </v-col>
       </v-container>
+      <v-container>
+        <v-col>
+
+          <PopNewProject/>
+        </v-col>
+        </v-container>
+
       <v-list >
         <v-list-item 
         v-for="link in getNavBar" 
@@ -70,8 +82,12 @@
 </template>
 
 <script >
+import PopNewProject from './PopNewProject.vue';
 import { mapGetters } from 'vuex';
 export default {
+  components: {
+    PopNewProject,
+  },
   data() {
     return {
       drawer: false

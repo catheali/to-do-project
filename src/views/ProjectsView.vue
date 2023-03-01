@@ -17,7 +17,6 @@
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
-
     </v-container>
   </div>
 </template>
@@ -34,7 +33,6 @@ computed: {
   }
 
 },
-
 }
 </script>
 
