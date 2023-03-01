@@ -4,7 +4,7 @@
     <v-container class="my-5">
   <v-expansion-panels focusable>
     <v-expansion-panel
-      v-for="project in getProjects"
+      v-for="project in myProjects"
       :key="project.title">
       <v-expansion-panel-header>{{ project.title }} <span class="text-end">
         {{ project.person }}
@@ -26,7 +26,13 @@
 import { mapGetters } from 'vuex';
 export default {
 computed: {
-  ...mapGetters('dashboard',['getProjects'])
+  ...mapGetters('dashboard',['getProjects']),
+  myProjects(){
+    return this.getProjects.filter(project=>{
+      return project.person === 'Bruxa das Terras Abandonadas'
+    })
+  }
+
 },
 
 }
