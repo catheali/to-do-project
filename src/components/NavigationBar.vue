@@ -3,15 +3,34 @@
     <v-app-bar 
     flat
     app>
+    <div v-show="getLogin"> 
       <v-app-bar-nav-icon 
       @click="showDrawer"></v-app-bar-nav-icon>
+    </div>
       <v-toolbar-title 
       class="text-uppercase grey--text">
         <span class="font-weight-light">Todo</span>
         <span>LIST</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-    <v-menu offset-y >
+
+      <div v-show="!getLogin">
+      <v-btn 
+        outlined
+       color="accent"
+       route
+       
+       >
+        <span>Register Now</span>
+        <v-icon 
+        right>
+        mdi-account-plus
+        </v-icon>
+      </v-btn>
+    </div>
+      
+    <div v-if="getLogin" >
+      <v-menu offset-y >
       <template v-slot:activator="{on}">
       <v-btn 
       text 
@@ -45,8 +64,12 @@
           mdi-logout
         </v-icon>
       </v-btn>
+    </div>
     </v-app-bar>
-    <v-navigation-drawer 
+
+
+    <div v-show="getLogin" >
+      <v-navigation-drawer 
     app
     v-model="drawer">
       <v-container>
@@ -78,6 +101,8 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+    </div>
+   
   </nav>
 </template>
 
@@ -94,7 +119,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('navbar', ['getNavBar'] )
+    ...mapGetters('navbar', ['getNavBar'] ),
+    ...mapGetters('auth', ['getLogin'] )
   },
   methods: {
     showDrawer() {

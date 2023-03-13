@@ -9,14 +9,20 @@
                 elevation="4" 
                 outlined 
                 class="pa-5">
-                    <h1 class="text-center">Login</h1>
+                    <h1 class="text-center">Register Now</h1>
 
                     <v-form 
                     ref="form" 
                     v-model="valid" 
                     lazy-validation
-
                     >
+                        <v-text-field
+                        v-model="name"
+                        label="Nome"
+                        required
+                        >
+                        </v-text-field>
+
                         <v-text-field 
                         v-model="email" 
                         :rules="emailRules" 
@@ -31,13 +37,24 @@
                         label="Password" 
                         hint="At least 8 characters" 
                         @click:append="show = !show"></v-text-field>
+
+                        <v-text-field 
+                        v-model="password" 
+                        :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                        :rules="[rules.required, rules.min]" 
+                        :type="show ? 'text' : 'password'" 
+                        name="input-10-1"
+                        label="Please enter your password again" 
+                        hint="At least 8 characters" 
+                        @click:append="show = !show"></v-text-field>
+
                         <div class="mt-3 text-center">
                             <v-btn 
                             :disabled="valid" 
                             color="success" 
                             class="mr-4" 
                             @click.prevent="validate">
-                                Entrar
+                               Criar conta
                             </v-btn>
 
                             <v-btn 
@@ -45,7 +62,7 @@
                             outlined
                             x-small
                             class="mr-4">
-                                Esqueci minha Senha
+                                Cancelar
                             </v-btn>
                         </div>
 
@@ -63,6 +80,7 @@ export default {
     data: () => ({
         valid: false,
         show: false,
+        name:'',
         email: '',
         emailRules: [
             v => !!v || 'E-mail is required',
