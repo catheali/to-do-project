@@ -18,7 +18,7 @@
                     >
                         <v-text-field
                         v-model="name"
-                        label="Nome"
+                        label="Name"
                         required
                         >
                         </v-text-field>
@@ -54,15 +54,15 @@
                             color="success" 
                             class="mr-4" 
                             @click.prevent="validate">
-                               Criar conta
+                               Create account
                             </v-btn>
 
                             <v-btn 
-                            color="danger"
+                            color="primary"
                             outlined
                             x-small
-                            class="mr-4">
-                                Cancelar
+                            class="mt-2">
+                                Already have a account
                             </v-btn>
                         </div>
 

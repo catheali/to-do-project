@@ -1,9 +1,15 @@
 <template>
-  <div>
+  <div >
+    
       <v-app class="vamover" >
       <NavigationBar />
       <v-main class="mx-4 mb-4">
-        <router-view />
+        <div v-if="!getLogin">
+          <LoginView/>
+        </div>
+        <div v-else>
+          <router-view></router-view>
+        </div>
       </v-main>
     </v-app> 
   </div>
@@ -11,16 +17,21 @@
 
 <script>
  import NavigationBar from './components/NavigationBar.vue';
-import LoginView from './views/LoginView.vue';
+ import LoginView from './views/LoginView.vue';
+ import { mapGetters } from 'vuex';
 export default {
   components: {
     NavigationBar,
-    LoginView
+    LoginView,
+    
   },
   name: 'App',
   data: () => ({
-    logged:true,
+
   }),
+  computed: {
+    ...mapGetters('auth', ['getLogin'] )
+  }
 };
 </script>
 
