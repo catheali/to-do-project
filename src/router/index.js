@@ -1,27 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import TeamView from '../views/TeamView.vue'
-import ProjectsView from '../views/ProjectsView.vue'
-import DashboardView from '../views/DashboardView.vue'
-import LoginView from '../views/LoginView.vue'
-import RegisterView from '../views/RegisterView'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/home',
     name: 'home',
-    component: DashboardView
+    component: () => import('../views/AboutView.vue')
   },
   {
     path: '/team',
     name: 'team',
-    component: TeamView
+    component: () => import('../views/TeamView.vue')
   },
   {
     path: '/projects',
     name: 'projects',
-    component: ProjectsView
+    component: () => import('../views/ProjectsView.vue')
   },
   {
     path: '/about',
@@ -34,12 +29,12 @@ const routes = [
   {
     path:'/login',
     name:'login',
-    component:LoginView
+    component: () => import('../views/LoginView.vue')
   },
   {
     path:'/register',
     name:'register',
-    component:RegisterView
+    component:() => import('../views/RegisterView.vue')
   }
 ]
 

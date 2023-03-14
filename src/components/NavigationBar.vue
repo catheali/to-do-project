@@ -19,7 +19,7 @@
         outlined
        color="accent"
        route
-       
+       :to="{name:'register'}"
        >
         <span>Register Now</span>
         <v-icon 
