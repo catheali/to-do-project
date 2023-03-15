@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import auth from './modules/auth'
 import dashboard from './modules/dashboard'
 import navigationbar from './modules/navigationbar'
 import team from './modules/team'
-import auth from './modules/auth'
+
 
 Vue.use(Vuex)
 
@@ -13,7 +14,7 @@ const createStore = () => {
   dashboard: dashboard,
   navbar: navigationbar,
   team: team,
-  auth: auth,
+  auth: auth
  }
 })
 }

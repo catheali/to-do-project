@@ -16,12 +16,12 @@
                     lazy-validation
                     >
                         <v-text-field 
-                        v-model="payload.email" 
+                        v-model="formLogin.email" 
                         :rules="emailRules" 
                         label="E-mail"
                          required></v-text-field>
                         <v-text-field 
-                        v-model="payload.password" 
+                        v-model="formLogin.password" 
                         :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                         :rules="[rules.required, rules.min]" 
                         :type="show ? 'text' : 'password'" 
@@ -34,7 +34,7 @@
                             :disabled="valid" 
                             color="success" 
                             class="mr-4" 
-                            @click.prevent="getLogin(payload)">
+                            @click.prevent="validate">
                                 Entrar
                             </v-btn>
                             <v-btn 
@@ -53,14 +53,16 @@
 </template>
   
 <script>
-import {  mapActions } from "vuex";
+import { mapActions } from 'vuex';
+
 export default {
     data: () => ({
         valid: false,
         show: false,
-        payload: {
+        formLogin: {
         email: '',
-        password: ''},
+        password: ''
+      },
         emailRules: [
             v => !!v || 'E-mail is required',
             v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
@@ -73,12 +75,19 @@ export default {
     }),
 
     methods: {
-        validate(payload) {
-            if((!this.payload.email) || (!this.payload.password) || (this.payload.password.length < 8)){
+        ...mapActions('auth',['loginAuth']),
+        validate() {
+            if((!this.formLogin.email) || (!this.formLogin.password) || (this.formLogin.password.length < 8)){
                 return;
             }
-            console.log(this.payload)
-            mapActions('auth',['getLogin'])
+           let valid = {
+                email: this.formLogin.email,
+                password: this.formLogin.password
+            }
+
+            console.log(valid)
+            store.dispatch('loginAuth', valid)
+        
         },
        
 
