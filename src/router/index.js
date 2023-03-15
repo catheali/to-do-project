@@ -4,9 +4,9 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
-    name: 'home',
-    component: () => import('../views/AboutView.vue')
+    path: '/dashboard',
+    name: 'dashboard',
+    component: () => import('../views/DashboardView.vue')
   },
   {
     path: '/team',
