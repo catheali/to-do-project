@@ -53,7 +53,10 @@
 </template>
   
 <script>
+
 import { mapActions } from 'vuex';
+import axios from 'axios';
+import API from '../store/modules/api'
 
 export default {
     data: () => ({
@@ -80,13 +83,18 @@ export default {
             if((!this.formLogin.email) || (!this.formLogin.password) || (this.formLogin.password.length < 8)){
                 return;
             }
-           let valid = {
-                email: this.formLogin.email,
-                password: this.formLogin.password
-            }
+           axios.post(API+'/login', {
+                "email": this.formLogin.email,
+                "password": this.formLogin.password
+            })
+            .then(function (response) {
+              console.log(response);
+            
 
-            console.log(valid)
-            store.dispatch('loginAuth', valid)
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         
         },
        

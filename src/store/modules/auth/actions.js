@@ -1,19 +1,33 @@
 import API from "../api";
-export default {
-   loginAuth(payload){
+import axios from 'axios';
 
-    console.log(payload)
-    fetch(API +'/login',{
-        method: 'POST',
-        headers: {
-         'Content-Type':'application/json',
-         'Accept':'application/json',
-        },
-        body: JSON.stringify(payload)
-     })
-     .then(response=>response.json())
-     .then(res => {
-       console.log(res)
-     });
+export default {
+   loginAuth(){
+
+    // axios.post(API+'/login', {
+             
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+
+
+    // console.log(payload)
+    // fetch(API +'/login',{
+    //     method: 'POST',
+    //     headers: {
+    //      'Content-Type':'application/json',
+    //      'Access':'application/json',
+
+    //     },
+    //     body: JSON.stringify(payload)
+    //  })
+    //  .then(response=>response.json())
+    //  .then(res => {
+    //    console.log(res)
+    //  });
    }
 }
