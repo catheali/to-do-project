@@ -9,12 +9,12 @@
                 elevation="4" 
                 outlined 
                 class="pa-5">
-                    <h1 class="text-center">Login</h1>
+                    <h1 class="text-center">Login</h1>                    
                     <v-form 
                     ref="form" 
                     v-model="valid" 
                     lazy-validation
-                    >
+                    >                   
                         <v-text-field 
                         v-model="formLogin.email" 
                         :rules="emailRules" 
@@ -55,8 +55,6 @@
 <script>
 
 import { mapActions } from 'vuex';
-import axios from 'axios';
-import API from '../store/modules/api'
 
 export default {
     data: () => ({
@@ -64,7 +62,8 @@ export default {
         show: false,
         formLogin: {
         email: '',
-        password: ''
+        password: '',
+        
       },
         emailRules: [
             v => !!v || 'E-mail is required',
@@ -72,7 +71,7 @@ export default {
         ],
         rules: {
             required: value => !value || 'Required.',
-            min: v => v.length >= 8 || 'Min 8 characters',
+            min: v => v.length > 7 || 'Min 8 characters',
         },
 
     }),
@@ -80,27 +79,13 @@ export default {
     methods: {
         ...mapActions('auth',['loginAuth']),
         validate() {
-            if((!this.formLogin.email) || (!this.formLogin.password) || (this.formLogin.password.length < 8)){
+            if((!this.formLogin.email) || (!this.formLogin.password) || (this.formLogin.password.length < 7)){
                 return;
-            }
-           axios.post(API+'/login', {
-                "email": this.formLogin.email,
-                "password": this.formLogin.password
-            })
-            .then(function (response) {
-              console.log(response);
-            
-
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        
-        },
-       
-
-
-    },
+            }          
+            this.loginAuth(this.formLogin)
+     
+    }
+}
 }
 </script>
   

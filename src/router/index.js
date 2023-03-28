@@ -6,7 +6,8 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: () => import('../views/DashboardView.vue')
+    component: () => import('../views/DashboardView.vue'),
+  
   },
   {
     path: '/team',
@@ -29,7 +30,8 @@ const routes = [
   {
     path:'/login',
     name:'login',
-    component: () => import('../views/LoginView.vue')
+    component: () => import('../views/LoginView.vue'),
+   
   },
   {
     path:'/register',
