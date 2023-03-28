@@ -12,27 +12,40 @@ export default {
        this.setAuthToken(response.data.token)
        commit(types.SET_USER, payload)
        commit(types.SET_LOGIN, true)
+       this.$router.push('/')
      })
      .catch(function (error) {
-     return error.response
-      
-       
+     return error.response       
      });
    },
 
-   isLogged() {
-      let authToken = this.getAuthToken()
-      return !!authToken
+   isLoggedIn() {
+      let authToken = this.get
+      return !~authToken;
    },
+
    setAuthToken({commit}, token){
-      commit(types.SET_TOKEN, token);
-      Storage.setItem('AUTH_TOKEN_KEY', token);
+      commit(types.SET_TOKEN, token)
+      localStorage.setItem('AUTH_TOKEN_KEY', token)
    },
-   getAuthToken(){
 
+   getAuthToken() {
+      return localStorage.getItem('AUTH_TOKEN_KEY')
    },
-   clearAuthToken(){
 
+   clearAuthToken(){ 
+   localStorage.removeItem('AUTH_TOKEN_KEY')
    },
+
+   getUserInfo() {
+      if (this.isLoggedIn()) {
+          return this.getAuthToken()
+      }
+      },
+
+  logoutUser() {
+   this.clearAuthToken()
+   }
+
 
 }

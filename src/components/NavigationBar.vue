@@ -3,7 +3,7 @@
     <v-app-bar 
     flat
     app>
-    <div v-show="getLogin"> 
+    <div v-show="isLogged()"> 
       <v-app-bar-nav-icon 
       @click="showDrawer"></v-app-bar-nav-icon>
     </div>
@@ -14,7 +14,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <div v-show="!getLogin">
+      <div v-show="!isLogged()">
       <v-btn 
         outlined
        color="accent"
@@ -29,7 +29,7 @@
       </v-btn>
     </div>
       
-    <div v-if="getLogin" >
+    <div v-if="isLogged" >
       <v-menu offset-y >
       <template v-slot:activator="{on}">
       <v-btn 
@@ -68,7 +68,7 @@
     </v-app-bar>
 
 
-    <div v-show="getLogin" >
+    <div v-show="isLogged()" >
       <v-navigation-drawer 
     app
     v-model="drawer">
@@ -108,7 +108,8 @@
 
 <script >
 import PopNewProject from './PopNewProject.vue';
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   components: {
     PopNewProject,
@@ -120,11 +121,15 @@ export default {
   },
   computed: {
     ...mapGetters('navbar', ['getNavBar'] ),
-    ...mapGetters('auth', ['getLogin'] )
+    ...mapActions('auth', ['isLoggedIn'] )
   },
   methods: {
     showDrawer() {
       this.drawer = !this.drawer
+    },
+    isLogged(){
+     this.isLoggedIn()
+      
     }
   }
 }
