@@ -1,5 +1,5 @@
-import API from "../api";
-import axios from 'axios';
+// import API from "../api";
+// import axios from 'axios';
 
 export default {
    loginAuth(){
