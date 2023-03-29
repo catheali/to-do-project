@@ -29,7 +29,7 @@
       </v-btn>
     </div>
       
-    <div v-if="isLogged" >
+    <div v-if="isLogged()" >
       <v-menu offset-y >
       <template v-slot:activator="{on}">
       <v-btn 
@@ -108,7 +108,7 @@
 
 <script >
 import PopNewProject from './PopNewProject.vue';
-import { mapActions, mapGetters } from 'vuex';
+import {  mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -120,16 +120,16 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('navbar', ['getNavBar'] ),
-    ...mapActions('auth', ['isLoggedIn'] )
+    ...mapGetters('auth', ['getLogin']),
+    ...mapGetters('navbar', ['getNavBar']),
+   
   },
   methods: {
     showDrawer() {
       this.drawer = !this.drawer
     },
     isLogged(){
-     this.isLoggedIn()
-      
+    return this.getLogin
     }
   }
 }

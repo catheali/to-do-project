@@ -27,7 +27,7 @@
                         :type="show ? 'text' : 'password'" 
                         name="input-10-1"
                         label="Password" 
-                        hint="At least 8 characters" 
+                        hint="At least 7 characters" 
                         @click:append="show = !show"></v-text-field>
                         <div class="mt-3 text-center">
                             <v-btn 
@@ -56,6 +56,7 @@
 
 import { mapActions } from 'vuex';
 
+
 export default {
     data: () => ({
         valid: false,
@@ -71,7 +72,7 @@ export default {
         ],
         rules: {
             required: value => !value || 'Required.',
-            min: v => v.length > 7 || 'Min 8 characters',
+            min: v => v.length > 6 || 'Min 6 characters',
         },
 
     }),
@@ -82,7 +83,14 @@ export default {
             if((!this.formLogin.email) || (!this.formLogin.password) || (this.formLogin.password.length < 7)){
                 return;
             }          
-            this.loginAuth(this.formLogin)
+            try {
+                 this.loginAuth(this.formLogin)
+               
+            } catch (error) {
+                alert(`Error: ${error}`);
+            }
+           
+            
      
     }
 }

@@ -3,14 +3,14 @@ import axios from 'axios';
 import * as types from './mutations-types'
 
 export default {
-  async loginAuth({commit}, payload){
+  async loginAuth({commit, dispatch}, payload){
       await axios.post(API+'/login', {
         email: payload.email,
         password: payload.password
       })
-     .then(function (response) {
-       this.setAuthToken(response.data.token)
-       commit(types.SET_USER, payload)
+     .then(function (res) {
+      commit(types.SET_USER, payload)
+       dispatch('setAuthToken', res.data.token)
        commit(types.SET_LOGIN, true)
        this.$router.push('/')
      })
@@ -19,14 +19,20 @@ export default {
      });
    },
 
-   isLoggedIn() {
-      let authToken = this.get
-      return !~authToken;
+   isLoggedIn({getters}) {
+      let authToken = this.getAuthToken
+      let tokenValid = getters.getLogin
+      if( authToken && tokenValid ){
+         return true;
+      }else{
+         return false;
+      }
    },
 
    setAuthToken({commit}, token){
       commit(types.SET_TOKEN, token)
       localStorage.setItem('AUTH_TOKEN_KEY', token)
+
    },
 
    getAuthToken() {
@@ -37,8 +43,8 @@ export default {
    localStorage.removeItem('AUTH_TOKEN_KEY')
    },
 
-   getUserInfo() {
-      if (this.isLoggedIn()) {
+   getUserInfo({dispatch}) {
+      if ( !dispatch('isLoggedIn')) {
           return this.getAuthToken()
       }
       },
