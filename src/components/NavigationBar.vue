@@ -57,7 +57,10 @@
     </v-menu>
 
       <v-btn 
-      text color="grey">
+      text color="grey"
+      
+      
+      >
         <span>Sign out</span>
         <v-icon 
         right>
@@ -130,6 +133,15 @@ export default {
     },
     isLogged(){
     return this.getLogin
+    },
+    logoutUser(){
+      try {
+                 
+                 this.$router.push('/')
+            
+            } catch (error) {
+                alert(`Error: ${error}`);
+            }
     }
   }
 }

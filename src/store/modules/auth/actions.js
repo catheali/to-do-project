@@ -10,9 +10,8 @@ export default {
       })
      .then(function (res) {
       commit(types.SET_USER, payload)
-       dispatch('setAuthToken', res.data.token)
-       commit(types.SET_LOGIN, true)
-       this.$router.push('/')
+      dispatch('setAuthToken', res.data.token)
+      commit(types.SET_LOGIN, true) 
      })
      .catch(function (error) {
      return error.response       
@@ -20,7 +19,7 @@ export default {
    },
 
    isLoggedIn({getters}) {
-      let authToken = this.getAuthToken
+      let authToken = this.getAuthToken()
       let tokenValid = getters.getLogin
       if( authToken && tokenValid ){
          return true;
@@ -29,10 +28,9 @@ export default {
       }
    },
 
-   setAuthToken({commit}, token){
-      commit(types.SET_TOKEN, token)
+   setAuthToken({commit},token){
       localStorage.setItem('AUTH_TOKEN_KEY', token)
-
+      commit(types.SET_TOKEN, token);
    },
 
    getAuthToken() {
@@ -52,6 +50,4 @@ export default {
   logoutUser() {
    this.clearAuthToken()
    }
-
-
 }

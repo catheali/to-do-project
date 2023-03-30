@@ -9,26 +9,20 @@ const routes = [
     path: '/',
     name: 'dashboard',
     component: () => import('../views/DashboardView.vue'),
-    meta: {
-      needsAuth: true
-    }
+   
   
   },
   {
     path: '/team',
     name: 'team',
     component: () => import('../views/TeamView.vue'),
-    meta: {
-      needsAuth: true
-    }
+  
   },
   {
     path: '/projects',
     name: 'projects',
     component: () => import('../views/ProjectsView.vue'),
-    meta: {
-      needsAuth: true
-    }
+    
   },
   {
     path: '/about',
@@ -37,22 +31,24 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
-    meta: {
-      needsAuth: true
-    }
+  
   },
   {
     path:'/login',
     name:'login',
     component: () => import('../views/LoginView.vue'),
-   
+    meta: {
+      allowAnonymous: true
+    }
    
   },
   {
     path:'/register',
     name:'register',
     component:() => import('../views/RegisterView.vue'),
-   
+    meta: {
+      allowAnonymous: true
+    }
   }
 ]
 
@@ -62,33 +58,35 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next)=>{
-  let needsAuthentication = to.meta.needsAuth
-  if(to.name == 'login'){   
-    if(authToken() && needsAuthentication){
-      next({path: '/'})
-    }else {
-      next()
-    }
-  }else{
-    if(authToken()){
-      next()
-    }else{
-      next({
-        path:'/login',
-        query: { redirect: to.fullPath}
+router.beforeEach( async (to, from, next)=>{
+  let vamover = await authToken();
+  if (to.name == 'login' && vamover) {
+    console.log(vamover)
+    next({ path: '/' })
+}
+else if (!to.meta.allowAnonymous && !vamover) {
+    next({
+        path: '/login',
+       query: {redirect:to.fullPath }
     })
-    }
-  }
+}
+else {
+    next()
+}
 })
 
-function authToken() {
-  let session = store('auth/isLogged').getters['auth/getLogin']
+  
+async function authToken() {
+  let session = store('auth').getters['auth/getLogin'];
+  let tokenSession = await store('auth').dispatch('auth/getAuthToken');
+  let tokenState = store('auth').getters['auth/getToken'];
 
-  if (session.token === '' || session.token === undefined) {
-    return false
+  if ((!session || session === undefined) && (!tokenSession && !tokenState)) {
+    return false;
   }
-  return true
+  if(session && (tokenSession === tokenState)){
+  return true;
+}
 }
 
 export default router

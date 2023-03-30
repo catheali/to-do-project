@@ -64,34 +64,30 @@ export default {
         formLogin: {
         email: '',
         password: '',
-        
       },
         emailRules: [
             v => !!v || 'E-mail is required',
             v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
         ],
         rules: {
-            required: value => !value || 'Required.',
-            min: v => v.length > 6 || 'Min 6 characters',
+            required: v => !!v || 'Required.',
+            min: v => v.length > 8 || 'Min 6 characters',
         },
-
     }),
-
+   
     methods: {
         ...mapActions('auth',['loginAuth']),
-        validate() {
+       async validate() {
             if((!this.formLogin.email) || (!this.formLogin.password) || (this.formLogin.password.length < 7)){
                 return;
             }          
             try {
-                 this.loginAuth(this.formLogin)
-               
+                 await this.loginAuth(this.formLogin)
+                 this.$router.push('/')
+            
             } catch (error) {
                 alert(`Error: ${error}`);
             }
-           
-            
-     
     }
 }
 }

@@ -39,7 +39,7 @@
                         @click:append="show = !show"></v-text-field>
 
                         <v-text-field 
-                        v-model="password" 
+                        v-model="password2" 
                         :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                         :rules="[rules.required, rules.min]" 
                         :type="show ? 'text' : 'password'" 
@@ -48,7 +48,7 @@
                         hint="At least 8 characters" 
                         @click:append="show = !show"></v-text-field>
 
-                        <div class="mt-3 text-center">
+                        <v-layout class="mt-3  justify-center ">
                             <v-btn 
                             :disabled="valid" 
                             color="success" 
@@ -61,10 +61,11 @@
                             color="primary"
                             outlined
                             x-small
-                            class="mt-2">
-                                Already have a account
+                            :to="{name:'login'}"
+                            class="mt-3 ">
+                                Login in 
                             </v-btn>
-                        </div>
+                        </v-layout>
 
                     </v-form>
                 </v-card>
@@ -87,6 +88,7 @@ export default {
             v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
         ],
         password: '',
+        password2:'',
         rules: {
             required: value => !value || 'Required.',
             min: v => v.length >= 8 || 'Min 8 characters',
