@@ -37,8 +37,11 @@ export default {
       return localStorage.getItem('AUTH_TOKEN_KEY')
    },
 
-   clearAuthToken(){ 
+   clearAuthToken({commit}){ 
    localStorage.removeItem('AUTH_TOKEN_KEY')
+   commit(types.SET_TOKEN, '')
+   commit(types.SET_LOGIN, false)
+   commit(types.SET_USER, undefined)
    },
 
    getUserInfo({dispatch}) {
@@ -47,7 +50,4 @@ export default {
       }
       },
 
-  logoutUser() {
-   this.clearAuthToken()
-   }
 }

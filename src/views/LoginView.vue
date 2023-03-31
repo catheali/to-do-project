@@ -83,7 +83,7 @@ export default {
             }          
             try {
                  await this.loginAuth(this.formLogin)
-                 this.$router.push('/')
+                 this.$router.replace(this.$route.query.redirect || '/');
             
             } catch (error) {
                 alert(`Error: ${error}`);

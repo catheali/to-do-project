@@ -61,7 +61,6 @@ const router = new VueRouter({
 router.beforeEach( async (to, from, next)=>{
   let vamover = await authToken();
   if (to.name == 'login' && vamover) {
-    console.log(vamover)
     next({ path: '/' })
 }
 else if (!to.meta.allowAnonymous && !vamover) {

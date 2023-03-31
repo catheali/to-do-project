@@ -13,7 +13,6 @@
         <span>LIST</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-
       <div v-show="!isLogged()">
       <v-btn 
         outlined
@@ -28,7 +27,6 @@
         </v-icon>
       </v-btn>
     </div>
-      
     <div v-if="isLogged()" >
       <v-menu offset-y >
       <template v-slot:activator="{on}">
@@ -55,13 +53,11 @@
         </v-list-item>
       </v-list>
     </v-menu>
-
       <v-btn 
       text color="grey"
-      
-      
+      @click="userLogout()"
       >
-        <span>Sign out</span>
+        <span>Logout</span>
         <v-icon 
         right>
           mdi-logout
@@ -69,8 +65,6 @@
       </v-btn>
     </div>
     </v-app-bar>
-
-
     <div v-show="isLogged()" >
       <v-navigation-drawer 
     app
@@ -85,11 +79,9 @@
       </v-container>
       <v-container>
         <v-col>
-
           <PopNewProject/>
         </v-col>
         </v-container>
-
       <v-list >
         <v-list-item 
         v-for="link in getNavBar" 
@@ -105,14 +97,12 @@
       </v-list>
     </v-navigation-drawer>
     </div>
-   
   </nav>
 </template>
 
 <script >
 import PopNewProject from './PopNewProject.vue';
-import {  mapGetters } from 'vuex';
-
+import {  mapActions, mapGetters } from 'vuex';
 export default {
   components: {
     PopNewProject,
@@ -123,9 +113,10 @@ export default {
     }
   },
   computed: {
+    ...mapActions('auth',['clearAuthToken', 'loginAuth']),
     ...mapGetters('auth', ['getLogin']),
     ...mapGetters('navbar', ['getNavBar']),
-   
+
   },
   methods: {
     showDrawer() {
@@ -134,14 +125,14 @@ export default {
     isLogged(){
     return this.getLogin
     },
-    logoutUser(){
+     userLogout(){
       try {
-                 
-                 this.$router.push('/')
+           this.clearAuthToken
+           this.$router.push('/login')
             
-            } catch (error) {
-                alert(`Error: ${error}`);
-            }
+          } catch (error) {
+            alert(`Error: ${error}`);
+          }
     }
   }
 }
