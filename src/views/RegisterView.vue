@@ -11,27 +11,33 @@
                 class="pa-5">
                     <h1 class="text-center">Register Now</h1>
 
-                    <v-form 
-                    ref="form" 
+                    <v-form  
                     v-model="valid" 
                     lazy-validation
                     >
                         <v-text-field
-                        v-model="name"
+                        v-model="formRegister.name"
                         label="Name"
                         required
                         >
                         </v-text-field>
 
+                        <v-select
+                        :items="roles"
+                        item-text="text"
+                        v-model="formRegister.role"
+                        label="What is your role?"
+                        ></v-select>
+
                         <v-text-field 
-                        v-model="email" 
+                        v-model="formRegister.email" 
                         :rules="emailRules" 
                         label="E-mail"
                          required></v-text-field>
                         <v-text-field 
-                        v-model="password" 
+                        v-model="formRegister.password" 
                         :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                        :rules="[rules.required, rules.min]" 
+                        :rules="[rules.required]" 
                         :type="show ? 'text' : 'password'" 
                         name="input-10-1"
                         label="Password" 
@@ -41,19 +47,19 @@
                         <v-text-field 
                         v-model="password2" 
                         :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                        :rules="[rules.required, rules.min]" 
+                        :rules="[rules.required]" 
                         :type="show ? 'text' : 'password'" 
                         name="input-10-1"
                         label="Please enter your password again" 
                         hint="At least 8 characters" 
-                        @click:append="show = !show"></v-text-field>
+                        @click:append="show1 = !show1"></v-text-field>
 
                         <v-layout class="mt-3  justify-center ">
                             <v-btn 
                             :disabled="valid" 
                             color="success" 
                             class="mr-4" 
-                            @click.prevent="validate">
+                            @click.prevent="validateRegister">
                                Create account
                             </v-btn>
 
@@ -81,28 +87,35 @@ export default {
     data: () => ({
         valid: false,
         show: false,
-        name:'',
-        email: '',
+        show1:false,
+        formRegister: {
+            name:'',
+            role:'',
+            email: '',
+            password:''
+        },
+        password2:'',
         emailRules: [
             v => !!v || 'E-mail is required',
             v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
         ],
-        password: '',
-        password2:'',
+        roles: ['espero que nao saibam quem sou', 'seremos rapidos como um rio'],
+       
         rules: {
-            required: value => !value || 'Required.',
-            min: v => v.length >= 8 || 'Min 8 characters',
+            required: value => !value || 'Required.'
+           
         },
-
     }),
-
-    methods: {
-        validate() {
+    computed: {
+       
+    },
+     methods: {
+        validateRegister() {
             
 
             if(this.email == ''|| this.password == '' || !this.email || !this.password){
-                return;
-            }
+                return console.log(this.formRegister)
+             }
             
 
             console.log('passou');
