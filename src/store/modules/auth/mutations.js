@@ -10,6 +10,7 @@ export default{
     },
     [types.SET_LOGIN](state, payload){
         state.isLogged = payload;
-    }
+    },
+   
 
 }
