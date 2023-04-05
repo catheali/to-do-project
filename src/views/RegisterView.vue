@@ -5,122 +5,172 @@
             justify="center" 
             md="4" 
             offset-md="4">
-                <v-card 
-                elevation="4" 
-                outlined 
-                class="pa-5">
-                    <h1 class="text-center">Register Now</h1>
-
-                    <v-form  
-                    v-model="valid" 
-                    lazy-validation
-                    >
-                        <v-text-field
-                        v-model="formRegister.name"
-                        label="Name"
-                        required
-                        >
-                        </v-text-field>
-
-                        <v-select
+            <v-card 
+            elevation="4" 
+            outlined 
+            class="pa-5">
+            <v-toolbar-title 
+            class="text-uppercase grey--text text-center">
+                 <span>Registre-se</span>
+            </v-toolbar-title>
+            <v-form 
+            ref="form" 
+            class="mx-2" 
+           
+            lazy-validation>
+            <v-row>
+            <v-col cols="12">
+                <v-text-field 
+                v-model="formRegister.name"
+                :rules="nameRules"
+                label="Full Name">
+                </v-text-field>
+            </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="12" >
+                    <v-select
                         :items="roles"
                         item-text="text"
                         v-model="formRegister.role"
                         label="What is your role?"
                         ></v-select>
-
-                        <v-text-field 
-                        v-model="formRegister.email" 
-                        :rules="emailRules" 
-                        label="E-mail"
-                         required></v-text-field>
-                        <v-text-field 
-                        v-model="formRegister.password" 
-                        :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                        :rules="[rules.required]" 
-                        :type="show ? 'text' : 'password'" 
-                        name="input-10-1"
-                        label="Password" 
-                        hint="At least 8 characters" 
-                        @click:append="show = !show"></v-text-field>
-
-                        <v-text-field 
-                        v-model="password2" 
-                        :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                        :rules="[rules.required]" 
-                        :type="show ? 'text' : 'password'" 
-                        name="input-10-1"
-                        label="Please enter your password again" 
-                        hint="At least 8 characters" 
-                        @click:append="show1 = !show1"></v-text-field>
-
-                        <v-layout class="mt-3  justify-center ">
-                            <v-btn 
-                            :disabled="valid" 
-                            color="success" 
-                            class="mr-4" 
-                            @click.prevent="validateRegister">
-                               Create account
-                            </v-btn>
-
-                            <v-btn 
-                            color="primary"
-                            outlined
-                            x-small
-                            :to="{name:'login'}"
-                            class="mt-3 ">
-                                Login in 
-                            </v-btn>
-                        </v-layout>
-
-                    </v-form>
-                </v-card>
-
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="12">
+                    <v-text-field 
+                    v-model="formRegister.email" 
+                    :rules="emailRules" 
+                    label="Email" required>
+                    </v-text-field>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-alert 
+                v-show="error.valid"
+                border="right"
+                colored-border
+                 type="error"
+                elevation="2">
+                {{ error.message }}</v-alert>
+            <v-col 
+            cols="6">
+                <v-text-field 
+                v-model="formRegister.password" 
+                :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show ? 'text' : 'password'"
+                @click:append="show = !show"
+                :rules="passwordRules"
+                label="Password" 
+                required></v-text-field>
             </v-col>
-
+            <v-col 
+            cols="6">
+                 <v-text-field 
+                v-model="password2" 
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show1 ? 'text' : 'password'"
+                @click:append="show1 = !show1"
+                :rules="passwordRules"
+                label="Type password again" 
+                required></v-text-field>
+            </v-col>
+            </v-row>
+            <v-checkbox 
+            v-model="firstcheckbox" 
+            :rules="[v => !!v || 'You must agree to continue!']"
+            label="I agree with Terms and Conditions" 
+            required></v-checkbox>
+            <!-- <v-checkbox 
+            v-model="seccheckbox" 
+            :rules="[v => !!v || 'You must agree to receive!']"
+            label="I want to receive LogRocket Emails" 
+            required></v-checkbox> -->
+            <v-layout class="mt-3  justify-center ">
+                <v-btn 
+                
+                 color="success" 
+                 class="mr-4" 
+                 @click.prevent="validateRegister">
+                    Criar conta
+                </v-btn>
+                <v-btn 
+                    color="primary"
+                    outlined
+                    x-small
+                    :to="{name:'login'}"
+                    class="mt-3 ">
+                      Login in 
+                </v-btn>         
+            </v-layout>
+            </v-form>
+            </v-card>
+        </v-col>
         </v-row>
     </v-container>
 </template>
   
 <script>
+import { mapActions } from 'vuex';
 export default {
     data: () => ({
-        valid: false,
-        show: false,
-        show1:false,
-        formRegister: {
-            name:'',
-            role:'',
-            email: '',
-            password:''
-        },
-        password2:'',
-        emailRules: [
-            v => !!v || 'E-mail is required',
-            v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+       formRegister: {
+        name: '',
+        email: '',
+        password: '',
+        role:''
+       },
+       roles: ['Bailarina', 'BodyBuilder', 'Bruxa', 'King', 'Modelo', 'Ruler', 'Soldier', 'Poet'],
+       password2:"",
+       error:{
+       valid: false,
+       message:""
+       },
+       show: false,
+       show1: false,
+       emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()\\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'E-mail must be valid',
         ],
-        roles: ['espero que nao saibam quem sou', 'seremos rapidos como um rio'],
+        nameRules: [
+        v => !!v || 'Name is required',
+        v => (v && v.length <= 30) || 'Name must be less than 10 characters',
+        ],
+        passwordRules: [
+            v => !!v || 'Password is required',
+            v => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) || 'Password must contain at least lowercase letter, one number, a special character and one uppercase letter',
+        ],
+        firstcheckbox: false,
+        seccheckbox: false,
        
-        rules: {
-            required: value => !value || 'Required.'
-           
-        },
     }),
     computed: {
-       
     },
-     methods: {
-        validateRegister() {
-            
-
-            if(this.email == ''|| this.password == '' || !this.email || !this.password){
-                return console.log(this.formRegister)
+    methods: {
+       ...mapActions('auth', ['newUser']),
+       validateRegister: async function() {
+            if(!this.formRegister.email || !this.formRegister.password || (this.formRegister.password !== this.password2 && this.formRegister.password < 7) ){
+                this.error = {
+                    valid: true,
+                    message: "Os campos devem ser preenchidos corretamente :c "
+                }
+                return this.error;
              }
-            
-
-            console.log('passou');
+             if( this.formRegister.password !== this.password2){
+            this.error = {
+                    valid: true,
+                    message: "As senhas não coincidem :c "
+                }
+                return this.error;
+             }
+             try{ 
+                await this.newUser(this.formRegister);
+               return this.$router.replace('/login');
+             }catch(error){
+              return  alert(`Error: ${error}`);
+             }
         }
-
     },
 }
 </script>

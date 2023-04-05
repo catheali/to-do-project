@@ -15,12 +15,12 @@
       <v-spacer></v-spacer>
       <div v-show="!isLogged()">
       <v-btn 
-        outlined
-       color="accent"
-       route
-       :to="{name:'register'}"
+      outlined
+      color="accent"
+      route
+      :to="{name:'register'}"
        >
-        <span>Register Now</span>
+        <span>Nova Conta</span>
         <v-icon 
         right>
         mdi-account-plus

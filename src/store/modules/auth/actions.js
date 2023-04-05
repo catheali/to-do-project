@@ -49,5 +49,25 @@ export default {
           return this.getAuthToken()
       }
       },
+   async newUser( {commit}, payload){
+            await axios.post(API+'/users', {
+               name:payload.name,
+               email: payload.email,
+               password: payload.password,
+               role: payload.role
+            })
+            .then(function (res) {
+             commit('team/newTeamUser',{
+               name: payload.name,
+               role:payload.email ,
+             }, {root:true});
+            alert('usuario criado com sucesso', res);
+            })
+            .catch(function (error) {
+            return alert( 'Deu erro:', error.response)       
+            });
+         },
+
+
 
 }

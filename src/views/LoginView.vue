@@ -9,7 +9,10 @@
                 elevation="4" 
                 outlined 
                 class="pa-5">
-                    <h1 class="text-center">Login</h1>                    
+                <v-toolbar-title 
+                class="text-uppercase grey--text text-center">
+                 <span>Login</span>
+                </v-toolbar-title>                    
                     <v-form 
                     ref="form" 
                     v-model="valid" 
@@ -31,7 +34,7 @@
                         @click:append="show = !show"></v-text-field>
                         <div class="mt-3 text-center">
                             <v-btn 
-                            :disabled="valid" 
+                            :disabled="!valid" 
                             color="success" 
                             class="mr-4" 
                             @click.prevent="validate">
@@ -77,7 +80,7 @@ export default {
    
     methods: {
         ...mapActions('auth',['loginAuth']),
-       async validate() {
+       validate: async function() {
             if((!this.formLogin.email) || (!this.formLogin.password) || (this.formLogin.password.length < 7)){
                 return;
             }          
