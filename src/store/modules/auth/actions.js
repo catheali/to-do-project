@@ -9,7 +9,7 @@ export default {
         password: payload.password
       })
      .then(function (res) {
-      commit(types.SET_USER, payload)
+      commit(types.SET_USER, res.data.user)
       dispatch('setAuthToken', res.data.token)
       commit(types.SET_LOGIN, true) 
      })
@@ -48,6 +48,10 @@ export default {
       if ( !dispatch('isLoggedIn')) {
           return this.getAuthToken()
       }
+
+
+
+
       },
    async newUser( {commit}, payload){
             await axios.post(API+'/users', {

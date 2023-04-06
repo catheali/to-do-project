@@ -74,7 +74,9 @@
           <v-avatar  size="200">
       <img src="http://4.bp.blogspot.com/-YZI_7MCsyXM/Ur4fi-0BulI/AAAAAAAABaw/ct-7GYHwzrk/s1600/bruxa.jpg" alt="bruxa">
     </v-avatar>
-    <v-subheader class="justify-center">Bruxa das Terras Abandonadas</v-subheader>
+    <v-subheader  class="justify-center "> 
+      <strong v-html="getUser.name"></strong>
+    </v-subheader>
         </v-col>
       </v-container>
       <v-container>
@@ -114,9 +116,8 @@ export default {
   },
   computed: {
     ...mapActions('auth',['clearAuthToken', 'loginAuth']),
-    ...mapGetters('auth', ['getLogin']),
+    ...mapGetters('auth', ['getLogin', 'getUser']),
     ...mapGetters('navbar', ['getNavBar']),
-
   },
   methods: {
     showDrawer() {
@@ -129,7 +130,6 @@ export default {
       try {
            this.clearAuthToken
            this.$router.push('/login')
-            
           } catch (error) {
             alert(`Error: ${error}`);
           }

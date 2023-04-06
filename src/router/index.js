@@ -9,20 +9,21 @@ const routes = [
     path: '/',
     name: 'dashboard',
     component: () => import('../views/DashboardView.vue'),
-   
-  
   },
   {
     path: '/team',
     name: 'team',
     component: () => import('../views/TeamView.vue'),
-  
+  },
+  {
+    path: '/myaccount',
+    name: 'myaccount',
+    component: () => import('../views/MyAccount.vue'),
   },
   {
     path: '/projects',
     name: 'projects',
     component: () => import('../views/ProjectsView.vue'),
-    
   },
   {
     path: '/about',
@@ -40,7 +41,6 @@ const routes = [
     meta: {
       allowAnonymous: true
     }
-   
   },
   {
     path:'/register',
@@ -74,7 +74,6 @@ else {
 }
 })
 
-  
 async function authToken() {
   let session = store('auth').getters['auth/getLogin'];
   let tokenSession = await store('auth').dispatch('auth/getAuthToken');

@@ -17,7 +17,19 @@
                     ref="form" 
                     v-model="valid" 
                     lazy-validation
-                    >                   
+                    >  
+                    <v-row>
+                    <v-col cols="6">
+                     <v-alert 
+                    v-show="error.valid"
+                    border="right"
+                     colored-border
+                     type="error"
+                     elevation="2">
+                        {{ error.message }}</v-alert>
+                        </v-col>
+                    </v-row>
+                    
                         <v-text-field 
                         v-model="formLogin.email" 
                         :rules="emailRules" 
@@ -34,7 +46,7 @@
                         @click:append="show = !show"></v-text-field>
                         <div class="mt-3 text-center">
                             <v-btn 
-                            :disabled="!valid" 
+                            :disabled="validado" 
                             color="success" 
                             class="mr-4" 
                             @click.prevent="validate">
@@ -62,12 +74,16 @@ import { mapActions } from 'vuex';
 
 export default {
     data: () => ({
-        valid: false,
+        valid: true,
         show: false,
         formLogin: {
         email: '',
         password: '',
       },
+      error:{
+       valid: false,
+       message:""
+       },
         emailRules: [
             v => !!v || 'E-mail is required',
             v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
@@ -77,7 +93,11 @@ export default {
             min: v => v.length > 8 || 'Min 6 characters',
         },
     }),
-   
+    computed: {
+        validado(){
+            return !this.valid
+        } 
+    },   
     methods: {
         ...mapActions('auth',['loginAuth']),
        validate: async function() {
@@ -85,11 +105,13 @@ export default {
                 return;
             }          
             try {
-                 await this.loginAuth(this.formLogin)
-                 this.$router.replace(this.$route.query.redirect || '/');
-            
-            } catch (error) {
-                alert(`Error: ${error}`);
+                await this.loginAuth(this.formLogin)
+                  this.$router.replace(this.$route.query.redirect || '/')     
+            } catch (er) {
+                return this.error = {
+                    valid: true,
+                    message: er.response 
+                }
             }
     }
 }

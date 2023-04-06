@@ -16,7 +16,7 @@
             <v-form 
             ref="form" 
             class="mx-2" 
-           
+            v-model="valid"
             lazy-validation>
             <v-row>
             <v-col cols="12">
@@ -47,6 +47,7 @@
                 </v-col>
             </v-row>
             <v-row>
+                <v-col cols="6">
                 <v-alert 
                 v-show="error.valid"
                 border="right"
@@ -54,6 +55,9 @@
                  type="error"
                 elevation="2">
                 {{ error.message }}</v-alert>
+                </v-col>
+            </v-row>
+            <v-row>   
             <v-col 
             cols="6">
                 <v-text-field 
@@ -89,7 +93,7 @@
             required></v-checkbox> -->
             <v-layout class="mt-3  justify-center ">
                 <v-btn 
-                
+                :disabled="validado" 
                  color="success" 
                  class="mr-4" 
                  @click.prevent="validateRegister">
@@ -115,6 +119,7 @@
 import { mapActions } from 'vuex';
 export default {
     data: () => ({
+        valid: false,
        formRegister: {
         name: '',
         email: '',
@@ -146,6 +151,9 @@ export default {
        
     }),
     computed: {
+        validado(){
+            return !this.valid
+        } 
     },
     methods: {
        ...mapActions('auth', ['newUser']),
@@ -158,7 +166,7 @@ export default {
                 return this.error;
              }
              if( this.formRegister.password !== this.password2){
-            this.error = {
+                this.error = {
                     valid: true,
                     message: "As senhas não coincidem :c "
                 }
