@@ -3,7 +3,7 @@
     <v-app-bar 
     flat
     app>
-    <div v-show="isLogged()"> 
+    <div v-show="getLogin"> 
       <v-app-bar-nav-icon 
       @click="showDrawer"></v-app-bar-nav-icon>
     </div>
@@ -13,7 +13,7 @@
         <span>LIST</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <div v-show="!isLogged()">
+      <div v-show="!getLogin">
       <v-btn 
       outlined
       color="accent"
@@ -27,7 +27,7 @@
         </v-icon>
       </v-btn>
     </div>
-    <div v-if="isLogged()" >
+    <div v-if="getLogin" >
       <v-menu offset-y >
       <template v-slot:activator="{on}">
       <v-btn 
@@ -65,18 +65,25 @@
       </v-btn>
     </div>
     </v-app-bar>
-    <div v-show="isLogged()" >
+    <div v-show="getLogin" >
       <v-navigation-drawer 
-    app
-    v-model="drawer">
+         app
+        v-model="drawer">
       <v-container>
         <v-col>
-          <v-avatar  size="200">
-      <img src="http://4.bp.blogspot.com/-YZI_7MCsyXM/Ur4fi-0BulI/AAAAAAAABaw/ct-7GYHwzrk/s1600/bruxa.jpg" alt="bruxa">
-    </v-avatar>
-    <v-subheader  class="justify-center "> 
-      <strong v-html="getUser.name"></strong>
-    </v-subheader>
+          <v-layout class="d-block">
+            <v-avatar  size="200">
+            <img src="http://4.bp.blogspot.com/-YZI_7MCsyXM/Ur4fi-0BulI/AAAAAAAABaw/ct-7GYHwzrk/s1600/bruxa.jpg" alt="bruxa">
+          </v-avatar>
+          <div v-if="getUser && getUser.lenght > 0" class="justify-center">
+              <v-header>
+                {{getUser.name}}
+              </v-header>
+              <v-subheader  > 
+                {{getUser.role}}
+              </v-subheader>
+           </div>
+          </v-layout>
         </v-col>
       </v-container>
       <v-container>

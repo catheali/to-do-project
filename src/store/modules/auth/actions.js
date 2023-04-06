@@ -41,7 +41,7 @@ export default {
    localStorage.removeItem('AUTH_TOKEN_KEY')
    commit(types.SET_TOKEN, '')
    commit(types.SET_LOGIN, false)
-   commit(types.SET_USER, undefined)
+   commit(types.SET_USER, null)
    },
 
    getUserInfo({dispatch}) {

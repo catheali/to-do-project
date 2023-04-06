@@ -18,6 +18,7 @@
             class="mx-2" 
             v-model="valid"
             lazy-validation>
+            
             <v-row>
             <v-col cols="12">
                 <v-text-field 
@@ -39,6 +40,17 @@
             </v-row>
             <v-row>
                 <v-col cols="12">
+                    <v-file-input
+                    accept="image/png, image/jpeg, image/bmp"
+                    placeholder="Send your avatar picture"
+                    prepend-icon=""
+                    append-icon="mdi-camera"
+                    label="Select Avatar"
+                  ></v-file-input>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="12">
                     <v-text-field 
                     v-model="formRegister.email" 
                     :rules="emailRules" 
@@ -47,7 +59,7 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col cols="6">
+                <v-col cols="12">
                 <v-alert 
                 v-show="error.valid"
                 border="right"
@@ -86,11 +98,6 @@
             :rules="[v => !!v || 'You must agree to continue!']"
             label="I agree with Terms and Conditions" 
             required></v-checkbox>
-            <!-- <v-checkbox 
-            v-model="seccheckbox" 
-            :rules="[v => !!v || 'You must agree to receive!']"
-            label="I want to receive LogRocket Emails" 
-            required></v-checkbox> -->
             <v-layout class="mt-3  justify-center ">
                 <v-btn 
                 :disabled="validado" 
@@ -168,7 +175,7 @@ export default {
              if( this.formRegister.password !== this.password2){
                 this.error = {
                     valid: true,
-                    message: "As senhas não coincidem :c "
+                    message: "As senhas não coincidem, verifique e tente novamente :v "
                 }
                 return this.error;
              }
