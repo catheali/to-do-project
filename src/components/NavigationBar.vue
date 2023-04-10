@@ -75,13 +75,9 @@
             <v-avatar  size="200">
             <img src="http://4.bp.blogspot.com/-YZI_7MCsyXM/Ur4fi-0BulI/AAAAAAAABaw/ct-7GYHwzrk/s1600/bruxa.jpg" alt="bruxa">
           </v-avatar>
-          <div v-if="getUser && getUser.lenght > 0" class="justify-center">
-              <v-header>
-                {{getUser.name}}
-              </v-header>
-              <v-subheader  > 
-                {{getUser.role}}
-              </v-subheader>
+          <div v-if="getUser && getUser !== null"  class="text-center">
+            <div class="text-subtitle-1"> {{ getUser.name }}</div>
+            <div class="grey--text">{{ getUser.role }}</div>
            </div>
           </v-layout>
         </v-col>

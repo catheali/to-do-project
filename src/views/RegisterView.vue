@@ -1,4 +1,5 @@
 <template>
+   <div class="register" >
     <v-container>
         <v-row>
             <v-col 
@@ -120,6 +121,8 @@
         </v-col>
         </v-row>
     </v-container>
+   </div>
+    
 </template>
   
 <script>
@@ -154,7 +157,7 @@ export default {
             v => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) || 'Password must contain at least lowercase letter, one number, a special character and one uppercase letter',
         ],
         firstcheckbox: false,
-        seccheckbox: false,
+       
        
     }),
     computed: {

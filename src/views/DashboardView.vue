@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard ">
-        <h1 class="subheading grey--text">Dashboard</h1>   
+        <h1 class="subheading grey--text text-center">Dashboard</h1>   
         <v-container class="my-5 "> 
             <v-row class="mb-3 ">
                 <v-tooltip top>
@@ -118,18 +118,18 @@ export default {
     border-left: 4px solid #3cd1c2;
 }
 .project.ongoing {
-    border-left: 4px solid orange;
+    border-left: 4px solid #ffa500;
 }
 .project.overdue {
-    border-left: 4px solid tomato;
+    border-left: 4px solid #ff6347;
 }
 .v-chip.complete {
     background:  #3cd1c2;
 }
 .v-chip.ongoing {
-    background:  orange;
+    background:  #ffa500;
 }
 .v-chip.overdue {
-    background: rgb(255, 71, 95);
+    background: #ff475f;
 }
 </style>

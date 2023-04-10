@@ -50,7 +50,7 @@
     :items="items"
     chips
     clearable
-    label="Your favorite hobbies"
+    label="Status"
     multiple
     prepend-icon="mdi-filter-variant"
     variant="solo"

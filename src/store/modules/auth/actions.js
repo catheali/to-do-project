@@ -19,7 +19,6 @@ export default {
       message: error.response.data.error 
      })  
      });
-     
    },
 
    isLoggedIn({getters}) {
@@ -52,6 +51,10 @@ export default {
       if ( !dispatch('isLoggedIn')) {
           return this.getAuthToken()
       }
+
+      axios.get(API+'/user')
+
+
       },
    async newUser( {commit}, payload){
             await axios.post(API+'/users', {
@@ -71,7 +74,4 @@ export default {
             return alert( 'Deu erro:', error.response)       
             });
          },
-
-
-
 }
