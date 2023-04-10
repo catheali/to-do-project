@@ -11,6 +11,8 @@ export default{
     [types.SET_LOGIN](state, payload){
         state.isLogged = payload;
     },
-   
+   setError(state, payload){
+    state.error = payload;
+   }
 
 }

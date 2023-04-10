@@ -14,8 +14,12 @@ export default {
       commit(types.SET_LOGIN, true) 
      })
      .catch(function (error) {
-     return error.response       
+     return commit('setError',{
+      valid: true,
+      message: error.response.data.error 
+     })  
      });
+     
    },
 
    isLoggedIn({getters}) {
@@ -48,10 +52,6 @@ export default {
       if ( !dispatch('isLoggedIn')) {
           return this.getAuthToken()
       }
-
-
-
-
       },
    async newUser( {commit}, payload){
             await axios.post(API+'/users', {

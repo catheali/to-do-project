@@ -19,14 +19,14 @@
                     lazy-validation
                     >  
                     <v-row>
-                    <v-col cols="6">
+                    <v-col cols="12">
                      <v-alert 
-                    v-show="error.valid"
+                    v-show="getError.valid"
                     border="right"
                      colored-border
                      type="error"
                      elevation="2">
-                        {{ error.message }}</v-alert>
+                        {{ getError.message }}</v-alert>
                         </v-col>
                     </v-row>
                     
@@ -69,7 +69,7 @@
   
 <script>
 
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 
 export default {
@@ -80,10 +80,6 @@ export default {
         email: '',
         password: '',
       },
-      error:{
-       valid: false,
-       message:""
-       },
         emailRules: [
             v => !!v || 'E-mail is required',
             v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
@@ -94,6 +90,7 @@ export default {
         },
     }),
     computed: {
+        ...mapGetters('auth', ['getError', 'getLogin']),
         validado(){
             return !this.valid
         } 
@@ -104,15 +101,10 @@ export default {
             if((!this.formLogin.email) || (!this.formLogin.password) || (this.formLogin.password.length < 7)){
                 return;
             }          
-            try {
                 await this.loginAuth(this.formLogin)
-                  this.$router.replace(this.$route.query.redirect || '/')     
-            } catch (er) {
-                return this.error = {
-                    valid: true,
-                    message: er.response 
-                }
-            }
+                if(this.getLogin ){ 
+                this.$router.replace(this.$route.query.redirect || '/')}   
+            
     }
 }
 }

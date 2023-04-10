@@ -44,6 +44,31 @@
               v-model="due"
               ></v-date-picker>
             </v-menu>
+
+            <v-combobox
+    v-model="chips"
+    :items="items"
+    chips
+    clearable
+    label="Your favorite hobbies"
+    multiple
+    prepend-icon="mdi-filter-variant"
+    variant="solo"
+  >
+    <template v-slot:selection="{ attrs, item, select, selected }">
+      <v-chip
+        v-bind="attrs"
+        :model-value="selected"
+        closable
+        @click="select"
+        @click:close="remove(item)"
+      >
+        <strong>{{ item }}</strong>&nbsp;
+        <span>(interest)</span>
+      </v-chip>
+    </template>
+  </v-combobox>
+
             <v-btn 
             text 
             class="success mx-0 mt-3" 
@@ -64,6 +89,8 @@ export default {
       title: '',
       content: '',
       due: null,
+      chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
+        items: ['Streaming', 'Eating'],
       rules: [
         v => v.length >=3 || 'Minimum length is 3 characters',
 

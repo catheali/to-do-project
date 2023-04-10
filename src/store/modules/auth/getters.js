@@ -7,5 +7,8 @@ export default {
    },
    getUser(state){
       return state.user
+   },
+   getError(state){
+      return state.error
    }
 }
