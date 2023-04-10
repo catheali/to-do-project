@@ -21,23 +21,23 @@
       <v-toolbar-title class="flex text-center"> {{ getUser.name }}</v-toolbar-title>
     </v-toolbar>
     <v-tabs vertical>
-      <v-tab>
+      <v-tab >
         <v-icon left>
           mdi-account
         </v-icon>
-        Option 1
+        Dados Pessoais
       </v-tab>
-      <v-tab>
+      <v-tab >
         <v-icon left>
           mdi-lock
         </v-icon>
-        Option 2
+       <span class="text-right">Segurança</span>
       </v-tab>
       <v-tab>
         <v-icon left>
           mdi-access-point
         </v-icon>
-        Option 3
+        <span class="text-right"> Opções Avançadas</span>
       </v-tab>
       <v-tab-item>
         <v-card flat>

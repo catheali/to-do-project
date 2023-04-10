@@ -31,7 +31,6 @@ computed: {
       return project.person === 'Bruxa das Terras Abandonadas'
     })
   }
-
 },
 }
 </script>
