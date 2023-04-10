@@ -69,13 +69,35 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <p>
-              Implementar um input de alterar a senha
-            </p>
-            <p>
-              Implementar um select de alterar o role (a carreira)
-            </p>
+            
+            <v-row>
+              <v-col cols="12" >
+                    <v-select
+                        :items="roles"
+                        item-text="text"
+                        
+                        label="What is your role?"
+                        ></v-select>
+              </v-col>
+            </v-row>
           </v-card-text>
+          <v-card-text>
+            <v-row>   
+            <v-col 
+            cols="6">
+                <v-text-field 
+                label="Password" 
+                required></v-text-field>
+            </v-col>
+            <v-col 
+            cols="6">
+                 <v-text-field 
+                label="Type password again" 
+                required></v-text-field>
+            </v-col>
+            </v-row>
+          </v-card-text>
+          
         </v-card>
       </v-tab-item>
       <v-tab-item>
@@ -109,6 +131,7 @@
 import { mapGetters } from 'vuex';
 export default {
   data: () => ({
+    roles: ['Bailarina', 'BodyBuilder', 'Bruxa', 'King', 'Modelo', 'Ruler', 'Soldier', 'Poet'],
   
 }),
 computed: {

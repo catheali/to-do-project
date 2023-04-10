@@ -60,11 +60,11 @@ const router = new VueRouter({
 
 router.beforeEach( async (to, from, next)=>{
   let vamover = await authToken();
-  if (to.name == 'login' && vamover) {
+  if ((to.name == 'login' || to.name == 'register') && vamover) {
     next({ path: '/' })
 }
 else if (!to.meta.allowAnonymous && !vamover) {
-    next({
+  next({
         path: '/login',
        query: {redirect:to.fullPath }
     })

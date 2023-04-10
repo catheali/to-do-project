@@ -45,6 +45,7 @@
                     accept="image/png, image/jpeg, image/bmp"
                     placeholder="Send your avatar picture"
                     prepend-icon=""
+                    v-model=" formRegister.image"
                     append-icon="mdi-camera"
                     label="Select Avatar"
                   ></v-file-input>
@@ -133,6 +134,7 @@ export default {
        formRegister: {
         name: '',
         email: '',
+        image: [],
         password: '',
         role:''
        },
@@ -183,8 +185,9 @@ export default {
                 return this.error;
              }
              try{ 
-                await this.newUser(this.formRegister);
-               return this.$router.replace('/login');
+                console.log(this.formRegister);
+            //     await this.newUser(this.formRegister);
+            //    return this.$router.replace('/login');
              }catch(error){
               return  alert(`Error: ${error}`);
              }

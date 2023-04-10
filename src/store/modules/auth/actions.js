@@ -59,10 +59,14 @@ export default {
    async newUser( {commit}, payload){
             await axios.post(API+'/users', {
                name:payload.name,
+               image: payload.image,
                email: payload.email,
                password: payload.password,
                role: payload.role
-            })
+            },{
+               headers: {
+               'Content-Type': 'multipart/form-data'}
+             })
             .then(function (res) {
              commit('team/newTeamUser',{
                name: payload.name,
