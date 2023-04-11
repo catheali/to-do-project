@@ -185,9 +185,9 @@ export default {
                 return this.error;
              }
              try{ 
-                console.log(this.formRegister);
-            //     await this.newUser(this.formRegister);
-            //    return this.$router.replace('/login');
+                 console.log(this.formRegister);
+                 await this.newUser(this.formRegister);
+                 return this.$router.replace('/login');
              }catch(error){
               return  alert(`Error: ${error}`);
              }
