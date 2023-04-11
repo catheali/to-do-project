@@ -73,7 +73,7 @@
         <v-col>
           <v-layout class="d-block">
             <v-avatar  size="200">
-            <img src="http://4.bp.blogspot.com/-YZI_7MCsyXM/Ur4fi-0BulI/AAAAAAAABaw/ct-7GYHwzrk/s1600/bruxa.jpg" alt="bruxa">
+            <img :src="getUser.image" :alt=" getUser.name ">
           </v-avatar>
           <div v-if="getUser && getUser !== null"  class="text-center">
             <div class="text-subtitle-1"> {{ getUser.name }}</div>
@@ -108,6 +108,7 @@
 <script >
 import PopNewProject from './PopNewProject.vue';
 import {  mapActions, mapGetters } from 'vuex';
+
 export default {
   components: {
     PopNewProject,
@@ -117,6 +118,7 @@ export default {
       drawer: false
     }
   },
+  
   computed: {
     ...mapActions('auth',['clearAuthToken', 'loginAuth']),
     ...mapGetters('auth', ['getLogin', 'getUser']),

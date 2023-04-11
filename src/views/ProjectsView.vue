@@ -7,7 +7,12 @@
       v-for="project in myProjects"
       :key="project.title">
       <v-expansion-panel-header>{{ project.title }} <span class="text-end">
-        {{ project.person }}
+        <v-chip 
+              small 
+              :color="`${project.status}`" 
+              :class="`v-chip--active white--text caption my-2 `">
+               {{ project.status }}
+            </v-chip>
       </span> 
     </v-expansion-panel-header>
       <v-expansion-panel-content >
@@ -16,12 +21,7 @@
             <span class="caption grey--text "> Due by {{ project.due }}</span> 
           </div>
           <div>
-            <v-chip 
-              small 
-              :color="`${project.status}`" 
-              :class="`v-chip--active white--text caption my-2 `">
-               {{ project.status }}
-            </v-chip>
+           <span> Autor: {{ project.person }} </span>
           </div>
         </div>
         <div>

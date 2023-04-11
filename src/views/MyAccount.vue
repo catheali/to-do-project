@@ -9,8 +9,8 @@
           <v-avatar  
           size="150"
           left>
-            <img src="http://4.bp.blogspot.com/-YZI_7MCsyXM/Ur4fi-0BulI/AAAAAAAABaw/ct-7GYHwzrk/s1600/bruxa.jpg" alt="bruxa">
-          </v-avatar>
+          <img :src="getUser.image" :alt=" getUser.name ">
+           </v-avatar>
       </v-row>
       <v-row>
         <v-card>

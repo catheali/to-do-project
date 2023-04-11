@@ -170,13 +170,7 @@ export default {
     methods: {
        ...mapActions('auth', ['newUser']),
        validateRegister: async function() {
-            if(!this.formRegister.email || !this.formRegister.password || (this.formRegister.password !== this.password2 && this.formRegister.password < 7) ){
-                this.error = {
-                    valid: true,
-                    message: "Os campos devem ser preenchidos corretamente :c "
-                }
-                return this.error;
-             }
+        
              if( this.formRegister.password !== this.password2){
                 this.error = {
                     valid: true,
@@ -185,7 +179,6 @@ export default {
                 return this.error;
              }
              try{ 
-                 console.log(this.formRegister);
                  await this.newUser(this.formRegister);
                  return this.$router.replace('/login');
              }catch(error){

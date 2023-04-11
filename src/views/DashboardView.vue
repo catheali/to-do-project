@@ -24,7 +24,6 @@
                 </template>
                 <span>Ordenar por titulo </span>
                 </v-tooltip>
-
                 <v-tooltip top>
                 <template 
                 v-slot:activator="{ on, attrs }">
@@ -46,7 +45,6 @@
                 <span>Ordenar por usuario </span>
                 </v-tooltip>
             </v-row>
-
           <v-card  
           v-for=" project in getProjects" 
           :key="project.title" 
@@ -95,9 +93,12 @@
     </template>
     
 <script>
-   
    import { mapGetters } from 'vuex';
+   import  store  from '@/store/index.js'; 
 export default {
+    created() {
+       store('auth').dispatch('auth/getUserInfo')
+        },
        computed: {
         ...mapGetters('dashboard',['getProjects'])
        },

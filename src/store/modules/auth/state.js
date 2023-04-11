@@ -1,5 +1,5 @@
 export default {
-    user: { name:'', role: '' },
+    user: {},
     token: '',
     isLogged: false,
     error:{
