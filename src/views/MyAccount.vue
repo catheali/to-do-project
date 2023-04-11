@@ -69,13 +69,12 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            
             <v-row>
               <v-col cols="12" >
                     <v-select
                         :items="roles"
                         item-text="text"
-                        
+                        :value="getUser.role"
                         label="What is your role?"
                         ></v-select>
               </v-col>
@@ -121,10 +120,7 @@
       </v-row>
     </v-container>
   </v-card>
-
 </div>
-  
-
 </template>
 
 <script>
@@ -132,7 +128,6 @@ import { mapGetters } from 'vuex';
 export default {
   data: () => ({
     roles: ['Bailarina', 'BodyBuilder', 'Bruxa', 'King', 'Modelo', 'Ruler', 'Soldier', 'Poet'],
-  
 }),
 computed: {
     ...mapGetters('auth', ['getUser']),
@@ -142,7 +137,5 @@ computed: {
 </script>
 
 <style>
-
-
 
 </style>
