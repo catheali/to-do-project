@@ -4,8 +4,6 @@ import * as types from './mutations-types'
 
 
 export default {
- 
-
   async loginAuth({commit, dispatch}, payload){
       await axios.post(API+'/login', {
         email: payload.email,
@@ -61,7 +59,7 @@ export default {
             role: res.data.role,
             image: 'http://127.0.0.1:8000/storage/'+ res.data.image,
           })
-         //  const fileURL = window.URL.createObjectURL(res.data.image)
+        
        })
       
       },

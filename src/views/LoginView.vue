@@ -50,7 +50,13 @@
                             color="success" 
                             class="mr-4" 
                             @click.prevent="validate">
-                                Entrar
+                              <span v-if="loading">
+                                <v-progress-circular
+                                indeterminate
+                                color="green"
+                                ></v-progress-circular>
+                              </span> 
+                              <span v-else>Entrar</span>
                             </v-btn>
                             <v-btn 
                             color="danger"
@@ -68,13 +74,12 @@
 </template>
   
 <script>
-
 import { mapActions, mapGetters } from 'vuex';
-
 
 export default {
     data: () => ({
         valid: true,
+        loading: false,
         show: false,
         formLogin: {
         email: '',
@@ -98,11 +103,13 @@ export default {
     methods: {
         ...mapActions('auth',['loginAuth']),
        validate: async function() {
+            this.loading = true;
             if((!this.formLogin.email) || (!this.formLogin.password) || (this.formLogin.password.length < 7)){
                 return;
-            }          
+            }  
                 await this.loginAuth(this.formLogin)
-                if(this.getLogin ){ 
+                if(this.getLogin){ 
+                  this.loading = false;  
                 this.$router.replace(this.$route.query.redirect || '/')}   
             
     }
