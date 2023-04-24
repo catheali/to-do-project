@@ -1,7 +1,11 @@
-export default{
-    newTeamUser(state, payload){
-        state.team.push(payload);
-    }
+export default {
+	newTeamUser(state, payload) {
+		state.team = payload;
+	},
+	setError(state, payload) {
+		state.error = payload;
+	},
+	
 
 
 
