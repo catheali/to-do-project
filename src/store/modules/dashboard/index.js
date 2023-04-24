@@ -4,5 +4,6 @@ import state from './state'
 export default {
   namespaced: true,
   state,
-  getters
+  getters,
+  actions
 }
