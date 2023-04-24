@@ -13,9 +13,9 @@
 							<div class="grey--text">{{ person.role }}</div>
 						</v-card-text>
 						<v-card-actions>
-							<v-btn small depressed color="grey--text" >
+							<v-btn small depressed color="grey--text"  :href="`mailto:${person.email}`">
 								<v-icon small left> mdi-message-text</v-icon>
-								<span>{{ person.email }} </span>
+								<span>Message </span>
 							</v-btn>
 						</v-card-actions>
 					</v-card>
