@@ -12,7 +12,7 @@
 							<div class="text-subtitle-1"> {{ person.name }}</div>
 							<div class="grey--text">{{ person.role }}</div>
 						</v-card-text>
-						<v-card-actions>
+						<v-card-actions class="justify-center">
 							<v-btn small depressed color="grey--text"  :href="`mailto:${person.email}`">
 								<v-icon small left> mdi-message-text</v-icon>
 								<span>Message </span>

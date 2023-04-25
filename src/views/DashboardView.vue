@@ -1,7 +1,7 @@
 <template>
 	<div class="dashboard ">
 		<h1 class="subheading grey--text text-center">Dashboard</h1>
-		<v-container class="my-5 ">
+		<v-container v-if="getAllProjects" class="my-5 ">
 			<v-row class="mb-3 ">
 				<v-tooltip top>
 					<template v-slot:activator="{ on, attrs }">
@@ -33,11 +33,11 @@
 					</v-col>
 					<v-col cols="6" sm="4" md="2">
 						<div class="caption grey--text">Person</div>
-						<div>{{ project.person }} </div>
+						<div>{{ project.name }} </div>
 					</v-col>
 					<v-col cols="6" sm="4" md="2">
 						<div class="caption grey--text">Due by</div>
-						<div> {{ project.due }} </div>
+						<div> <span>{{ project.due }}</span> </div>
 					</v-col>
 					<v-col cols="2" sm="4" md="2">
 						<div>
@@ -51,19 +51,23 @@
 				<v-divider></v-divider>
 			</v-card>
 		</v-container>
+		<v-container v-else>
+			<v-alert border="right" colored-border type="error" elevation="2"> Parece que ninguém criou nenhum projeto... </v-alert>
+		</v-container>
+		<v-alert  v-show="getError.valid" border="right" colored-border type="error" elevation="2">
+						{{ getError.message }}</v-alert>
 	</div>
 </template>
     
 <script>
-import { mapGetters } from 'vuex';
-
+import { mapActions, mapGetters } from 'vuex';
 export default {
 	created() {
-
+		
 	},
 	computed: {
-		...mapGetters('dashboard', ['getProjects']),
-
+		...mapGetters('dashboard', ['getProjects', 'getError']),
+		...mapActions('dashboard', ['getAllProjects']),
 		
 	},
 	methods: {
