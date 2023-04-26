@@ -4,5 +4,8 @@ export default {
 	},
 	setProjects(state,payload){
 		state.projects = payload;
+	},
+	setMyProjects(state,payload){
+		state.myProjects = payload;
 	}
 }

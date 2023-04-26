@@ -44,6 +44,28 @@ export default {
 				})
 				return error
 			})
+	},
+	async getMyProjects({commit}, payload){
+		await axios.get(API + '/projects/'+ payload)
+			.then(function (res) {
+				let myProject = res.data;
+				let myProjects = [];
+				myProject.forEach(element => {
+					myProjects.push({
+						id: element.id,
+						userId: element.user_id,
+						name: element.name,
+						title: element.title,
+						content: element.content,
+						due: element.due_time,
+						status: element.status
+					})
+				});
+				return commit('setMyProjects', myProjects);
+			})
+			.catch(function (error) {
+				return console.log(error.message);
+			})
 	}
 
 }

@@ -4,4 +4,5 @@ export default {
 		valid: false,
 		message: ""
 	},
+	myProjects:[]
 }

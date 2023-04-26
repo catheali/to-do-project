@@ -21,13 +21,12 @@
             <span class="caption grey--text "> Due by {{ project.due }}</span> 
           </div>
           <div>
-           <span> Autor: {{ project.person }} </span>
+           <span> Autor: {{ project.name }} </span>
           </div>
         </div>
         <div>
           {{ project.content }}
         </div>
-        
       </v-expansion-panel-content>
     </v-expansion-panel> 
   </v-expansion-panels>
@@ -44,15 +43,16 @@
 </template>
 
 <script >
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
-computed: {
+	mounted(){
+		this.getProjects()
+	},
+	computed: {
   ...mapGetters('auth',['getUser']),
-  ...mapGetters('dashboard',['getProjects']),
+  ...mapGetters('dashboard',['getAllMyProjects']),
   myProjects(){
-  let myProjects = this.getProjects.filter(project=>{ 
-       return project.person === this.getUser.name
-    });
+    let myProjects = this.getAllMyProjects;
     if (myProjects.length > 0){
       return myProjects
     }else {
@@ -60,6 +60,14 @@ computed: {
     }
   }
 },
+methods:{
+	...mapActions('dashboard', ['getMyProjects']),
+	getProjects(){
+		let user = this.getUser.id
+		this.getMyProjects(user)
+	}
+
+}
 }
 </script>
 

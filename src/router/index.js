@@ -59,6 +59,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach( async (to, from, next)=>{
+  
   let isValidToken = await authToken();
   if ((to.name == 'login' || to.name == 'register') && isValidToken) {
     next({ path: '/' })
@@ -74,7 +75,7 @@ else {
 }
 })
 
-async function authToken() {
+async function authToken(){
   let session = store('auth').getters['auth/getLogin'];
   let tokenSession = await store('auth').dispatch('auth/getAuthToken');
   let tokenState = store('auth').getters['auth/getToken'];
@@ -82,9 +83,10 @@ async function authToken() {
   if ((!session || session === undefined) && (!tokenSession && !tokenState)) {
     return false;
   }
-  if(session && (tokenSession === tokenState)){
-  return true;
-}
+  if(tokenSession){
+	await store('auth').dispatch('auth/getUserInfo');
+	return true;
+  }
 }
 
 export default router

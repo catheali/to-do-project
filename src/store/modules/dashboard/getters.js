@@ -4,5 +4,9 @@ export default {
     },
    getError (state){
 	return state.error
+   },
+   getAllMyProjects(state){
+	return state.myProjects
    }
+
 }
