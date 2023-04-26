@@ -77,7 +77,6 @@ methods:{
 		let user = this.getUser.id
 		this.getMyProjects(user)
 	}
-
 }
 }
 </script>

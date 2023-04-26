@@ -33,8 +33,6 @@ export default {
 		
 		}
 	},
-	computed: {
-	},
 	methods: {
 		...mapActions('dashboard', ['deleteProject']),
 
@@ -46,7 +44,6 @@ export default {
 		closeModal(){
 			this.dialog = !this.dialog;
 		}
-		
 	}
 }
 </script>
