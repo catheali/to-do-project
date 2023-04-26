@@ -3,7 +3,7 @@ import axios from 'axios';
 import store from '@/store/index.js';
 
 export default {
-	async createNewProject({ commit,dispatch }, payload) {
+	async createNewProject({ commit,dispatch }, payload){
 		let user = store('auth').getters['auth/getUser'];
 		await axios.post(API + '/projects', {
 			title: payload.title,
@@ -23,7 +23,7 @@ export default {
 				})
 			})
 	},
-	async getAllProjects({ commit }) {
+	async getAllProjects({ commit }){
 		await axios.get(API + '/projects')
 			.then(function (res) {
 				let project = res.data;
@@ -73,7 +73,7 @@ export default {
 				return console.log(error.message);
 			})
 	},
-	async updateProject({ dispatch }, payload) {
+	async updateProject({ dispatch }, payload){
 		let id = payload.id;
 		await axios.post(API + '/projects/'+ id, {
 			title: payload.title ? payload.title : null ,
@@ -86,13 +86,19 @@ export default {
 			await dispatch('getAllProjects');
 		})
 		.catch(function (error) {
-					console.log('Deu ruim: '+ error.response.data.error)
-				
+					console.log('Deu ruim: '+ error.response.data.error);
 			})
 	},
-	async 
-
-
-
+	async deleteProject({dispatch},payload){
+		await axios.delete(API + '/projects/'+ payload)
+		.then(async function(){
+			let user = store('auth').getters['auth/getUser'];
+			await dispatch('getMyProjects', user.id);
+			await dispatch('getAllProjects');
+		})
+		.catch(function(error){
+			console.log('Deu ruim: '+ error.response.data.error);
+		})
+	}
 
 }

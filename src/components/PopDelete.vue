@@ -8,8 +8,8 @@
 				<h3>Are you sure you wanna delete this project?</h3>
 				<v-card-text>
 						<div class="mt-5 d-flex justify-space-between ">
-						<v-btn  color="danger" dark @click="deleteProject">Delete Project</v-btn>
-						<v-btn  outlined color="warning" @click="dialog = false">Cancel</v-btn>
+						<v-btn  color="danger" dark @click="deleteProjectId">Delete Project</v-btn>
+						<v-btn  outlined color="warning" @click="closeModal">Cancel</v-btn>
 						</div>
 				</v-card-text>
 			</v-card-title>
@@ -21,39 +21,32 @@
 import { mapActions } from 'vuex'
 
 export default {
+	props: {
+		id: {
+			type: Number,
+			required: true
+		}
+	},
 	data() {
 		return {
 			dialog: false,
-			errorProj: {
-				valid: false,
-				message: ''
-			}
+		
 		}
 	},
 	computed: {
 	},
 	methods: {
-		...mapActions('dashboard', ['updateProject']),
+		...mapActions('dashboard', ['deleteProject']),
 
-		async deleteProject() {
-			if (!this.$refs.form.validate() || !this.formEdit.status || this.formEdit.due === null) {
-				return this.errorProj = {
-					valid: true,
-					message: "Preencha corretamente os campos do projeto."
-				}
-			}
-			this.cleanError()
-			// await this.createNewProject(this.formEdit);
-			alert('Projeto editado com sucesso!');
-			
-		},
-		cleanError(){
-			setTimeout(()=>{
-					this.errorProj = {
-					valid: false,
-					message: ""
-				}},5000)
+		async deleteProjectId() {
+			await this.deleteProject(this.id);
+			alert('Projeto excluido com sucesso!');
+			this.closeModal()
+		},	
+		closeModal(){
+			this.dialog = !this.dialog;
 		}
+		
 	}
 }
 </script>
