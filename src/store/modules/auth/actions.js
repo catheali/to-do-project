@@ -1,6 +1,7 @@
 import API from "../api";
 import axios from 'axios';
-import * as types from './mutations-types'
+import * as types from './mutations-types';
+import router from "@/router";
 
 
 export default {
@@ -64,6 +65,10 @@ export default {
 			commit(types.SET_LOGIN, true)
 			dispatch('setAuthToken', token)
 
+		}).catch( async function(error){
+			alert("Faça login novamente :" + error)
+			await dispatch('clearAuthToken')
+			router.push('/login')
 		})
 
 	},

@@ -9,7 +9,7 @@
 							<v-icon left small>
 								mdi-folder</v-icon>
 							<span class="caption text-lowercase">
-								By project Name</span>
+								By project Title</span>
 						</v-btn>
 					</template>
 					<span>Ordenar por título </span>
@@ -47,15 +47,16 @@
 						</div>
 					</v-col>
 				</v-row>
-				
+
 				<v-divider></v-divider>
 			</v-card>
 		</v-container>
 		<v-container v-else>
-			<v-alert border="right" colored-border type="error" elevation="2"> Parece que ninguém criou nenhum projeto... </v-alert>
+			<v-alert border="right" colored-border type="error" elevation="2"> Parece que ninguém criou nenhum projeto...
+			</v-alert>
 		</v-container>
-		<v-alert  v-show="getError.valid" border="right" colored-border type="error" elevation="2">
-						{{ getError.message }}</v-alert>
+		<v-alert v-show="getError.valid" border="right" colored-border type="error" elevation="2">
+			{{ getError.message }}</v-alert>
 	</div>
 </template>
     
@@ -63,12 +64,12 @@
 import { mapActions, mapGetters } from 'vuex';
 export default {
 	created() {
-		
+
 	},
 	computed: {
 		...mapGetters('dashboard', ['getProjects', 'getError']),
 		...mapActions('dashboard', ['getAllProjects']),
-		
+
 	},
 	methods: {
 		sortBy(prop) {

@@ -27,6 +27,11 @@
         <div>
           {{ project.content }}
         </div>
+		<v-divider class="mt-5"></v-divider>
+		<div class="mt-5 d-flex justify-space-between ">
+		<PopEditProject/>
+		<PopDelete/>
+		</div>
       </v-expansion-panel-content>
     </v-expansion-panel> 
   </v-expansion-panels>
@@ -44,7 +49,13 @@
 
 <script >
 import { mapGetters, mapActions } from 'vuex';
+import PopEditProject from '@/components/PopEditProject.vue';
+import PopDelete from '@/components/PopDelete.vue';
 export default {
+	components:{
+		PopEditProject,
+		PopDelete
+	},
 	mounted(){
 		this.getProjects()
 	},
