@@ -83,7 +83,7 @@ async function authToken(){
   if ((!session || session === undefined) && (!tokenSession && !tokenState)) {
     return false;
   }
-  if(tokenSession){
+  if(tokenSession ||session ||tokenState ){
 	await store('auth').dispatch('auth/getUserInfo');
 	return true;
   }

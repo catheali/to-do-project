@@ -62,6 +62,8 @@ export default {
 				image: 'http://127.0.0.1:8000/storage/' + res.data.image,
 			})
 			commit(types.SET_LOGIN, true)
+			dispatch('setAuthToken', token)
+
 		})
 
 	},
