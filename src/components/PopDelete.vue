@@ -5,7 +5,7 @@
 		</template>
 		<v-card >
 			<v-card-title>
-				<h3>Are you sure ?</h3>
+				<h3>Are you sure you wanna delete this project?</h3>
 				<v-card-text>
 						<div class="mt-5 d-flex justify-space-between ">
 						<v-btn  color="danger" dark @click="deleteProject">Delete Project</v-btn>

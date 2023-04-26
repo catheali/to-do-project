@@ -29,8 +29,8 @@
         </div>
 		<v-divider class="mt-5"></v-divider>
 		<div class="mt-5 d-flex justify-space-between ">
-		<PopEditProject/>
-		<PopDelete/>
+		<PopEditProject :project="project"/>
+		<PopDelete :id="project.id"/>
 		</div>
       </v-expansion-panel-content>
     </v-expansion-panel> 
@@ -56,7 +56,7 @@ export default {
 		PopEditProject,
 		PopDelete
 	},
-	mounted(){
+	created(){
 		this.getProjects()
 	},
 	computed: {

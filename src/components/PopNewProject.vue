@@ -5,7 +5,7 @@
 		</template>
 		<v-card >
 			<v-card-title>
-				<h3>Add a new project</h3>
+				<h3 class="subheading grey--text" >Add a new project</h3>
 				<v-card-text>
 					<v-alert v-show="errorProj.valid" border="right" colored-border type="error" elevation="2">
 						{{ errorProj.message }}</v-alert>
@@ -32,7 +32,7 @@
 						</v-select>
 						<div class="mt-5 d-flex justify-space-between ">
 						<v-btn text class="success " @click="createProject">Add Project</v-btn>
-						<v-btn outlined color="danger" @click="dialog = false"> Cancel</v-btn>	
+						<v-btn outlined color="danger" @click="closeModal"> Cancel</v-btn>	
 						</div>
 					</v-form>
 				</v-card-text>
@@ -96,6 +96,7 @@ export default {
 			this.cleanError()
 			await this.createNewProject(this.formProj);
 			alert('Projeto criado com sucesso!');
+			this.closeModal()
 			
 		},
 		cleanError(){
@@ -104,6 +105,9 @@ export default {
 					valid: false,
 					message: ""
 				}},5000)
+		},
+		closeModal(){
+			this.dialog = !this.dialog;
 		}
 	}
 }
