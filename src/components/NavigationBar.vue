@@ -52,8 +52,8 @@
 							<v-avatar v-if="getUser.image !== null" size="200">
 								<img :src="getUser.image" :alt="getUser.name">
 							</v-avatar>
-							<v-avatar v-else >
-								<v-icon> mdi-account-circle</v-icon>
+							<v-avatar v-else size="200" >
+								<v-icon size="150" > mdi-account-circle</v-icon>
 							</v-avatar>
 							<div v-if="getUser && getUser !== null" class="text-center">
 								<div class="text-subtitle-1"> {{ getUser.name }}</div>

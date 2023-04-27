@@ -69,8 +69,8 @@ export default {
 				});
 				return commit('setMyProjects', myProjects);
 			})
-			.catch(function (error) {
-				return console.log(error.message);
+			.catch(function () {
+				
 			})
 	},
 	async updateProject({ dispatch }, payload){

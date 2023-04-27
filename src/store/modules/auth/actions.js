@@ -60,7 +60,7 @@ export default {
 				id: res.data.id,
 				name: res.data.name,
 				role: res.data.role,
-				image: 'http://127.0.0.1:8000/storage/' + res.data.image,
+				image: res.data.image == null ? null : 'http://127.0.0.1:8000/storage/' + res.data.image,
 			})
 			commit(types.SET_LOGIN, true)
 			dispatch('setAuthToken', token)
@@ -72,7 +72,7 @@ export default {
 		})
 
 	},
-	async newUser({ commit }, payload) {
+	async newUser({ dispatch }, payload) {
 		await axios.post(API + '/users', {
 			name: payload.name,
 			image: payload.image,
@@ -83,16 +83,32 @@ export default {
 			headers: {
 				'Content-Type': 'multipart/form-data'
 			}
-		})
-			.then(function (res) {
-				commit('team/newTeamUser', {
-					name: payload.name,
-					role: payload.email,
-				}, { root: true });
+		}).then( async function (res) {
+			await dispatch('team/getAllTeam', { root: true });
 				alert('usuario criado com sucesso', res);
 			})
 			.catch(function (error) {
 				return alert('Deu erro:', error.response)
 			});
 	},
+	async updateUser({dispatch}, payload) {
+		let id = payload.id;
+		await axios.post(API + '/user/' + id, {
+			name: payload.name,
+			image: payload.img === [] ? null : payload.img ,
+			role: payload.role,
+		}, {
+			headers: {
+				'Content-Type': 'multipart/form-data'
+			}})
+			.then(async function () {
+				//await dispatch('team/getAllTeam', { root: true});
+				await dispatch('getUserInfo');
+			})
+			.catch(function (error){
+				return alert('Deu erro:', error.response);
+			})
+	}
+
+
 }
