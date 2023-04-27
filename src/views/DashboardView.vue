@@ -24,6 +24,16 @@
 					</template>
 					<span>Ordenar por usuário </span>
 				</v-tooltip>
+				<v-tooltip top>
+					<template v-slot:activator="{ on, attrs }">
+						<v-btn small v-bind="attrs" v-on="on" class="mr-2" outlined color="grey" @click="sortBy('status')">
+							<v-icon left small>
+								mdi-timelapse</v-icon>
+							<span class="caption text-lowercase">By status</span>
+						</v-btn>
+					</template>
+					<span>Ordenar por status </span>
+				</v-tooltip>
 			</v-row>
 			<v-card v-for=" project in getProjects" :key="project.title" flat>
 				<v-row wrap :class="` project ${project.status}`">

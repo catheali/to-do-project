@@ -17,7 +17,7 @@
 							prepend-icon="mdi-pencil"></v-textarea>
 						<v-menu max-width="290">
 							<template v-slot:activator="{ on }">
-								<v-text-field :rules="rules" :value="formattedDate" v-on="on" label="Due date"
+								<v-text-field  :value="formattedDate" v-on="on" label="Due date"
 									prepend-icon="mdi-calendar-range" slot="activator"></v-text-field>
 							</template>
 							<v-date-picker v-model="formProj.due"></v-date-picker>
@@ -97,6 +97,12 @@ export default {
 			await this.createNewProject(this.formProj);
 			alert('Projeto criado com sucesso!');
 			this.closeModal()
+			this.formProj ={
+				title: null,
+				content: null,
+				due: null,
+				status: null,
+			}
 			
 		},
 		cleanError(){

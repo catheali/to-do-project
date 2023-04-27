@@ -5,7 +5,7 @@
 		</template>
 		<v-card>
 			<v-card-title>
-				<h3>Update project</h3>
+				<h3 class="subheading grey--text">Update project</h3>
 				<v-card-text>
 					<v-alert v-show="errorProj.valid" border="right" colored-border type="error" elevation="2">
 						{{ errorProj.message }}</v-alert>
