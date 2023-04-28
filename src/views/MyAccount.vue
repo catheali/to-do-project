@@ -61,9 +61,9 @@
 							</v-tab-item>
 							<v-tab-item class="mb-5">
 								<v-card flat>
-
-									<p>Implementar troca de senha</p>
-
+									<v-col cols="11" class="d-flex justify-space-between ">
+											<span> Alterar informações pessoais e avatar:</span>
+										< />
 								</v-card>
 							</v-tab-item>
 							<v-tab-item class="mb-5">
