@@ -62,8 +62,10 @@
 							<v-tab-item class="mb-5">
 								<v-card flat>
 									<v-col cols="11" class="d-flex justify-space-between ">
-											<span> Alterar informações pessoais e avatar:</span>
-										< />
+											<span> Alterar senha :</span>
+											<PopResetPassword/>
+
+									</v-col>
 								</v-card>
 							</v-tab-item>
 							<v-tab-item class="mb-5">
@@ -89,9 +91,11 @@
 <script>
 import { mapGetters } from 'vuex';
 import PopUpdateInfo from '@/components/PopUpdateInfo.vue';
+import PopResetPassword from '@/components/PopResetPassword.vue';
 export default {
 	components:{
-		PopUpdateInfo
+		PopUpdateInfo,
+		PopResetPassword
 	},
 	created(){
 		
