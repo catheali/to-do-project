@@ -88,12 +88,17 @@ export default {
 
 		async createProject() {
 			if (!this.$refs.form.validate() || !this.formProj.status || this.formProj.due === null) {
-				return this.errorProj = {
+				this.errorProj = {
 					valid: true,
 					message: "Preencha corretamente os campos do projeto."
-				}
+				};
+				setTimeout(()=>{
+					this.errorProj = {
+					valid: false,
+					message: ""
+				}},5000);
+				return; 
 			}
-			this.cleanError()
 			await this.createNewProject(this.formProj);
 			alert('Projeto criado com sucesso!');
 			this.closeModal()
@@ -103,14 +108,6 @@ export default {
 				due: null,
 				status: null,
 			}
-			
-		},
-		cleanError(){
-			setTimeout(()=>{
-					this.errorProj = {
-					valid: false,
-					message: ""
-				}},5000)
 		},
 		closeModal(){
 			this.dialog = !this.dialog;

@@ -7,6 +7,8 @@
 			<v-card-title>
 				<h3 class="subheading grey--text">Update my info</h3>
 				<v-card-text>
+					<v-alert v-show="errorUpdate.valid" border="right" colored-border type="error" elevation="2">
+						{{ errorUpdate.message }}</v-alert>
 					<v-form class="px-3" ref="form">
 						<v-text-field v-model="formEdit.name" label="Full Name">
 						</v-text-field>
@@ -46,8 +48,10 @@ export default {
 				img: [],
 				id: this.user.id
 			},
-
-
+			errorUpdate: {
+				valid: false,
+				message: ''
+			}
 		}
 	},
 	computed: {
@@ -57,8 +61,23 @@ export default {
 	methods: {
 		...mapActions('auth', ['updateUser']),
 		async updateInfoUser() {
+			if (this.formEdit.name == this.user.name && this.formEdit.role == this.user.role && this.formEdit.img.length === 0) {
+				this.errorUpdate = {
+					valid: true,
+					message: "Preencha corretamente os campos a serem alterados."
+				}
+				setTimeout(()=>{
+					this.errorUpdate.valid = false;
+				}, 5000)
+				return;
+			}
 			await this.updateUser(this.formEdit);
-			alert('Atualizado com sucesso');
+			this.formEdit = {
+				name: this.user.name,
+				role: this.user.role,
+				img: [],
+				id: this.user.id
+				};	
 			this.closeModal()
 		},
 		closeModal() {

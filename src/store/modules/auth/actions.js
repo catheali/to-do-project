@@ -104,6 +104,7 @@ export default {
 			.then(async function () {
 				//await dispatch('team/getAllTeam', { root: true});
 				await dispatch('getUserInfo');
+				alert('Atualizado com sucesso');
 			})
 			.catch(function (error){
 				return alert('Deu erro:', error.response);
