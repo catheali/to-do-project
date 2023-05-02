@@ -5,9 +5,13 @@
 			<v-row v-if="getAllTeam">
 				<v-col cols="12" sm="6" md="4" lg="3" v-for="person in getTeam" :key="person.id">
 					<v-card text class="text-center ma-3">
-						<v-responsive class="pt-4">
-							<v-img :src="person.img" />
+						<v-responsive  class="pt-4">
+								<v-img v-if="person.img !== null" :src="person.img" />
+							<v-avatar v-else class="profile" tile size="200">
+								<v-icon size="150" > mdi-account-circle</v-icon>
+							</v-avatar>
 						</v-responsive>
+						
 						<v-card-text>
 							<div class="text-subtitle-1"> {{ person.name }}</div>
 							<div class="grey--text">{{ person.role }}</div>
