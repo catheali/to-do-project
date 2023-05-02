@@ -35,7 +35,7 @@
 					<span>Ordenar por status </span>
 				</v-tooltip>
 			</v-row>
-			<v-card v-for=" project in getProjects" :key="project.title" flat>
+			<v-card v-for=" project in allProjects" :key="project.title" flat>
 				<v-row wrap :class="` project ${project.status}`">
 					<v-col cols="12" md="6">
 						<div class="caption grey--text">Project Title</div>
@@ -79,6 +79,13 @@ export default {
 	computed: {
 		...mapGetters('dashboard', ['getProjects', 'getError']),
 		...mapActions('dashboard', ['getAllProjects']),
+		allProjects(){
+			let projects = this.getProjects;
+			projects.forEach(project => {
+				project.title = project.title.charAt(0).toUpperCase() + project.title.slice(1);
+			});
+			return projects
+		}
 
 	},
 	methods: {

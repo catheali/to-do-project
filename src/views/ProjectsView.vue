@@ -2,7 +2,15 @@
   <div class="projects">
     <h1 class="subheading grey--text text-center">Projects</h1>
     <v-container class="my-5">
-  <v-expansion-panels v-if="myProjects" focusable>
+		<v-alert v-if="!myProjects"
+      border="bottom"
+      colored-border
+      type="warning"
+      elevation="2"
+    >
+      Não há projetos ainda, tente criar um novo.
+  </v-alert>
+  <v-expansion-panels v-else focusable>
      <v-expansion-panel 
       v-for="project in myProjects"
       :key="project.title">
@@ -35,14 +43,6 @@
       </v-expansion-panel-content>
     </v-expansion-panel> 
   </v-expansion-panels>
-  <v-alert v-else
-      border="bottom"
-      colored-border
-      type="warning"
-      elevation="2"
-    >
-      Não há projetos ainda, tente criar um novo.
-  </v-alert>
     </v-container>
   </div>
 </template>
@@ -65,6 +65,9 @@ export default {
   myProjects(){
     let myProjects = this.getAllMyProjects;
     if (myProjects.length > 0){
+			myProjects.forEach(project => {
+				project.title = project.title.charAt(0).toUpperCase() + project.title.slice(1);
+			});
       return myProjects
     }else {
       return false

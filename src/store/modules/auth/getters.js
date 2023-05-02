@@ -10,5 +10,8 @@ export default {
    },
    getError(state){
       return state.error
+   },
+   getErrorRstPswd(state){
+	return state.errorRstPswd
    }
 }

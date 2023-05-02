@@ -103,10 +103,10 @@ export default {
 			alert('Projeto criado com sucesso!');
 			this.closeModal()
 			this.formProj ={
-				title: null,
-				content: null,
+				title: '',
+				content: '',
 				due: null,
-				status: null,
+				status: '',
 			}
 		},
 		closeModal(){

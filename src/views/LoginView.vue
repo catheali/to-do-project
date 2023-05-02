@@ -54,7 +54,7 @@ export default {
 		],
 		rules: {
 			required: v => !!v || 'Required.',
-			min: v => v.length > 8 || 'Min 6 characters',
+			min: v => v.length > 8 || 'Min 8 characters',
 		},
 	}),
 	computed: {

@@ -6,4 +6,8 @@ export default {
       valid: false,
       message:""
       },
+	errorRstPswd: {
+		valid: false,
+		message: ''
+	}
   }

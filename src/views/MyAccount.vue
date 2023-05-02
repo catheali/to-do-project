@@ -61,11 +61,13 @@
 							</v-tab-item>
 							<v-tab-item class="mb-5">
 								<v-card flat>
-									<v-col cols="11" class="d-flex justify-space-between ">
-											<span> Alterar senha :</span>
+									<v-card-text>
+										<v-col cols="11" class="d-flex justify-space-between ">
+											<span> Alterar senha:</span>
 											<PopResetPassword/>
 
 									</v-col>
+									</v-card-text>
 								</v-card>
 							</v-tab-item>
 							<v-tab-item class="mb-5">

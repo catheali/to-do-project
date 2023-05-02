@@ -13,6 +13,9 @@ export default{
     },
    setError(state, payload){
     state.error = payload;
+   },
+   setPswError(state, payload){
+	state.errorRstPswd = payload;
    }
 
 }

@@ -2,6 +2,8 @@ import API from "../api";
 import axios from 'axios';
 import * as types from './mutations-types';
 import router from "@/router";
+import store from '@/store/index.js';
+
 
 
 export default {
@@ -60,6 +62,7 @@ export default {
 				id: res.data.id,
 				name: res.data.name,
 				role: res.data.role,
+				email: res.data.email,
 				image: res.data.image == null ? null : 'http://127.0.0.1:8000/storage/' + res.data.image,
 			})
 			commit(types.SET_LOGIN, true)
@@ -109,7 +112,40 @@ export default {
 			.catch(function (error){
 				return alert('Deu erro:', error.response);
 			})
+	},
+	
+	async resetPassword({commit,dispatch}, payload){
+		let token = await dispatch('getAuthToken');
+		let user = store('auth').getters['auth/getUser'];
+		let id = user.id;
+		await axios.post(API + '/user/resetpassword/'+ id,{
+			email: user.email,
+			password: payload.oldPassword,
+			newPassword: payload.password
+		}, {
+			headers: {
+				'Authorization': 'Bearer ' + token
+			}
+		}).then(function (res) {
+			
+			console.log(res);
+		})
+		.catch(function(error){
+			commit('setPswError', {
+				valid: true,
+				message: error.response.data.error
+			});
+			return setTimeout(() => {
+				commit('setPswError', {
+					valid: false,
+					message: ''
+				})
+			}, 5000)
+			
+		})
 	}
+
+
 
 
 }
