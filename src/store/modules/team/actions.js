@@ -12,7 +12,7 @@ export default {
 				users.forEach(element => {
 					team.push({
 						id: element.id,
-						img: 'http://127.0.0.1:8000/storage/' + element.image,
+						img:  element.image == null ? null : 'http://127.0.0.1:8000/storage/' + element.image,
 						name: element.name,
 						role: element.role,
 						email: element.email
