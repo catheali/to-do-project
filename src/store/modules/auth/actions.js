@@ -4,8 +4,6 @@ import * as types from './mutations-types';
 import router from "@/router";
 import store from '@/store/index.js';
 
-
-
 export default {
 	async loginAuth({ commit, dispatch }, payload) {
 		await axios.post(API + '/login', {
@@ -75,6 +73,7 @@ export default {
 		})
 
 	},
+
 	async newUser({ dispatch }, payload) {
 		await axios.post(API + '/users', {
 			name: payload.name,
@@ -94,6 +93,7 @@ export default {
 				return alert('Deu erro:', error.response)
 			});
 	},
+
 	async updateUser({dispatch}, payload) {
 		let id = payload.id;
 		await axios.post(API + '/user/' + id, {
@@ -127,7 +127,7 @@ export default {
 				'Authorization': 'Bearer ' + token
 			}
 		}).then(function (res) {
-			
+			alert('Senha alterada com sucesso!')
 			console.log(res);
 		})
 		.catch(function(error){
@@ -144,8 +144,5 @@ export default {
 			
 		})
 	}
-
-
-
 
 }

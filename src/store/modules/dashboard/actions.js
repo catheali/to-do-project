@@ -71,7 +71,6 @@ export default {
 				});
 				await dispatch('getAllProjects');
 				return commit('setMyProjects', myProjects);
-
 			})
 			.catch(function (error) {
 				console.log(error.message);
@@ -93,14 +92,15 @@ export default {
 				console.log('Deu ruim: ' + error.response.data.error);
 			})
 	},
-	async deleteProject({ dispatch }, payload) {
+	async deleteProject({ dispatch, commit }, payload) {
 		await axios.delete(API + '/projects/' + payload)
 			.then(async function () {
-				let user = store('auth').getters['auth/getUser'];
-				await dispatch('getMyProjects', user.id);
 				await dispatch('getAllProjects');
+				let myProjects = [];
+				commit('setMyProjects', myProjects )
 			})
 			.catch(function (error) {
+				
 				console.log('Deu ruim: ' + error.response.data.error);
 			})
 	}

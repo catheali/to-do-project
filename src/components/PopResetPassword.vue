@@ -79,7 +79,7 @@ export default {
 		async updatePasswordUser() {
 			if (this.formRst.password !== '' && this.formRst.password2 !== '' && this.formRst.password === this.formRst.password2) {
 				await this.resetPassword(this.formRst);
-				alert('Senha alterada com sucesso!')
+				
 			} else {
 				this.errorRstPswd1 = {
 					valid: true,
