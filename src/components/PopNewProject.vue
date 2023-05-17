@@ -36,6 +36,9 @@
 						</div>
 					</v-form>
 				</v-card-text>
+				<v-card-text class="d-flex justify-end">
+						<v-checkbox small label="Criar mais de um" v-model="multiple"> </v-checkbox>
+				</v-card-text>
 			</v-card-title>
 		</v-card>
 	</v-dialog>
@@ -48,6 +51,7 @@ export default {
 	data() {
 		return {
 			dialog:false,
+			multiple: false,
 			formProj:{
 				title: '',
 				content: '',
@@ -101,7 +105,9 @@ export default {
 			}
 			await this.createNewProject(this.formProj);
 			alert('Projeto criado com sucesso!');
-			this.closeModal()
+			if(!this.multiple){
+				this.closeModal()
+			}
 			this.formProj ={
 				title: '',
 				content: '',
