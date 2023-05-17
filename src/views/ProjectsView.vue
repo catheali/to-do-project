@@ -10,7 +10,31 @@
     >
       Não há projetos ainda, tente criar um novo.
   </v-alert>
-  <v-expansion-panels v-else focusable>
+  <div v-else>
+  <v-expansion-panels  focusable>
+	<v-row class="mb-3 ">
+				<v-tooltip top>
+					<template v-slot:activator="{ on, attrs }">
+						<v-btn small outlined v-bind="attrs" v-on="on" class="mr-2" color="grey" @click="sortBy('title')">
+							<v-icon left small>
+								mdi-folder</v-icon>
+							<span class="caption text-lowercase">
+								By project Title</span>
+						</v-btn>
+					</template>
+					<span>Ordenar por título </span>
+				</v-tooltip>
+				<v-tooltip top>
+					<template v-slot:activator="{ on, attrs }">
+						<v-btn small v-bind="attrs" v-on="on" class="mr-2" outlined color="grey" @click="sortBy('status')">
+							<v-icon left small>
+								mdi-timelapse</v-icon>
+							<span class="caption text-lowercase">By status</span>
+						</v-btn>
+					</template>
+					<span>Ordenar por status </span>
+				</v-tooltip>
+			</v-row>
      <v-expansion-panel 
       v-for="project in myProjects"
       :key="project.title">
@@ -43,6 +67,7 @@
       </v-expansion-panel-content>
     </v-expansion-panel> 
   </v-expansion-panels>
+</div>
     </v-container>
   </div>
 </template>
@@ -79,7 +104,10 @@ methods:{
 	getProjects(){
 		let user = this.getUser.id
 		this.getMyProjects(user)
-	}
+	},
+	sortBy(prop) {
+			this.myProjects.sort((a, b) => a[prop] < b[prop] ? -1 : 1)
+		}
 }
 }
 </script>
