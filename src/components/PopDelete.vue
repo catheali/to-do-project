@@ -8,7 +8,7 @@
 				<h3 class="subheading grey--text">Are you sure you wanna delete this project?</h3>
 				<v-card-text>
 						<div class="mt-5 d-flex justify-space-between ">
-						<v-btn  color="danger" dark @click="deleteProjectId">Delete Project</v-btn>
+						<v-btn  color="danger" dark @click="deleteProjectById">Delete Project</v-btn>
 						<v-btn  outlined color="warning" @click="closeModal">Cancel</v-btn>
 						</div>
 				</v-card-text>
@@ -36,7 +36,7 @@ export default {
 	methods: {
 		...mapActions('dashboard', ['deleteProject']),
 
-		async deleteProjectId() {
+		async deleteProjectById() {
 			await this.deleteProject(this.id);
 			alert('Projeto excluido com sucesso!');
 			this.closeModal()
