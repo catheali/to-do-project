@@ -126,7 +126,7 @@ export default {
 			headers: {
 				'Authorization': 'Bearer ' + token
 			}
-		}).then(function (res) {
+		}).then(function () {
 			alert('Senha alterada com sucesso!')
 			
 		})
@@ -156,10 +156,9 @@ export default {
 			}
 		},{
 			headers: {
-				'Access-Control-Allow-Origin': '*',
 				'Authorization': 'Bearer ' + token
 			}
-		}).then(function (res) {
+		}).then(function () {
 			alert('Usuário excluido com sucesso!');
 
 			router.push('/login')
@@ -169,7 +168,7 @@ export default {
 			
 			commit('setPswError', {
 				valid: true,
-				message: error.response.status + error.response.statusText
+				message: error.response.data.error
 			});
 			return setTimeout(() => {
 				commit('setPswError', {

@@ -72,9 +72,9 @@ export default {
 				await dispatch('getAllProjects');
 				return commit('setMyProjects', myProjects);
 			})
-			.catch(function (error) {
-				//alert(error.message);
-			})
+			// .catch(function (error) {
+			// 	alert(error.message);
+			// })
 	},
 	async updateProject({ dispatch }, payload) {
 		let id = payload.id;
