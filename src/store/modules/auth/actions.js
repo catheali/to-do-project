@@ -143,6 +143,42 @@ export default {
 			}, 5000)
 			
 		})
+	},
+	async deleteUser({commit, dispatch}, payload) {
+		let token = await dispatch('getAuthToken');
+		let user = store('auth').getters['auth/getUser'];
+		let id = user.id;
+	
+		await axios.delete(API + '/user/delete/'+id,{
+			data: {
+			email: user.email,
+			password: payload.password,
+			}
+		},{
+			headers: {
+				'Access-Control-Allow-Origin': '*',
+				'Authorization': 'Bearer ' + token
+			}
+		}).then(function (res) {
+			alert('Usuário excluido com sucesso!');
+			
+			router.push('/login')
+			console.log(res);
+		})
+		.catch(function(error){
+			console.log(error)
+			commit('setPswError', {
+				valid: true,
+				message: error.response.status + error.response.statusText
+			});
+			return setTimeout(() => {
+				commit('setPswError', {
+					valid: false,
+					message: ''
+				})
+			}, 5000)
+			
+		})
 	}
 
 }

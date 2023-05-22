@@ -65,20 +65,19 @@
 										<v-col cols="11" class="d-flex justify-space-between ">
 											<span> Alterar senha:</span>
 											<PopResetPassword/>
-
-									</v-col>
+										</v-col>
+										<v-divider width="94%"></v-divider>
 									</v-card-text>
 								</v-card>
 							</v-tab-item>
 							<v-tab-item class="mb-5">
 								<v-card flat>
-									
 									<v-card-text>
-																		
-										
-								
-
-									
+									<v-col cols="11" class="d-flex justify-space-between">
+										<span>Excluir Conta</span>
+										<PopDeleteUser/>
+									</v-col>		
+									<v-divider width="94%"></v-divider>
 									</v-card-text>
 								</v-card>
 							</v-tab-item>
@@ -94,10 +93,12 @@
 import { mapGetters } from 'vuex';
 import PopUpdateInfo from '@/components/PopUpdateInfo.vue';
 import PopResetPassword from '@/components/PopResetPassword.vue';
+import PopDeleteUser from '@/components/PopDeleteUser.vue';
 export default {
 	components:{
 		PopUpdateInfo,
-		PopResetPassword
+		PopResetPassword,
+		PopDeleteUser
 	},
 	created(){
 		

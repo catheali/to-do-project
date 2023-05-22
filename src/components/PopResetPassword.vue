@@ -77,10 +77,7 @@ export default {
 	methods: {
 		...mapActions('auth', ['resetPassword']),
 		async updatePasswordUser() {
-			if (this.formRst.password !== '' && this.formRst.password2 !== '' && this.formRst.password === this.formRst.password2) {
-				await this.resetPassword(this.formRst);
-				
-			} else {
+			if (this.formRst.password == '' && this.formRst.password2 == '' && this.formRst.password !== this.formRst.password2) {
 				this.errorRstPswd1 = {
 					valid: true,
 					message: "Preencha corretamente os campos a serem alterados."
@@ -88,14 +85,13 @@ export default {
 				setTimeout(() => {
 					this.errorRstPswd.valid = false;
 				}, 5000)
-			}
+				return;
+			} 
+				
+				await this.resetPassword(this.formRst);
+				this.closeModal();
 		},
-		// 	
-		//
-		// 	this.closeModal()
-		//
-		// 		return;
-		// },
+	
 		closeModal() {
 			this.dialog = !this.dialog;
 		}

@@ -1,7 +1,7 @@
 <template>
 	<div class="dashboard ">
 		<h1 class="subheading grey--text text-center">Dashboard</h1>
-		<v-container v-if="getAllProjects" class="my-5 ">
+		<v-container v-if="allProjects.length > 0" class="my-5 ">
 			<v-row class="mb-3 ">
 				<v-tooltip top>
 					<template v-slot:activator="{ on, attrs }">
