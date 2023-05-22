@@ -73,7 +73,7 @@ export default {
 				return commit('setMyProjects', myProjects);
 			})
 			.catch(function (error) {
-				console.log(error.message);
+				//alert(error.message);
 			})
 	},
 	async updateProject({ dispatch }, payload) {
@@ -89,7 +89,7 @@ export default {
 			await dispatch('getAllProjects');
 		})
 			.catch(function (error) {
-				console.log('Deu ruim: ' + error.response.data.error);
+				alert('Deu ruim: ' + error.response.data.error);
 			})
 	},
 	async deleteProject({ dispatch, commit }, payload) {
@@ -101,7 +101,7 @@ export default {
 			})
 			.catch(function (error) {
 				
-				console.log('Deu ruim: ' + error.response.data.error);
+				alert('Deu ruim: ' + error.response.data.error);
 			})
 	}
 

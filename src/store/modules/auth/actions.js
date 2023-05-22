@@ -128,7 +128,7 @@ export default {
 			}
 		}).then(function (res) {
 			alert('Senha alterada com sucesso!')
-			console.log(res);
+			
 		})
 		.catch(function(error){
 			commit('setPswError', {
@@ -161,12 +161,12 @@ export default {
 			}
 		}).then(function (res) {
 			alert('Usuário excluido com sucesso!');
-			
+
 			router.push('/login')
-			console.log(res);
+			
 		})
 		.catch(function(error){
-			console.log(error)
+			
 			commit('setPswError', {
 				valid: true,
 				message: error.response.status + error.response.statusText
