@@ -5,8 +5,16 @@
 		</template>
 		<v-card >
 			<v-card-title>
-				<h4 class=" grey--text"> Tem certeza que gostaria de excluir seu usuário permanentemente? </h4>
+				<h4 class=" grey--text"> Tem certeza que gostaria de excluir seu usuário? </h4>
 				<v-card-text>
+					<v-list>
+						<v-list-item> 
+							<v-list-item-icon>
+								<v-icon ></v-icon>
+								Não será possivel recuperar sua conta ou projetos !
+							</v-list-item-icon>
+						</v-list-item>
+					</v-list>
 					<v-alert v-show="getErrorRstPswd.valid" border="right" colored-border type="error" elevation="2">
 						{{ getErrorRstPswd.message }}</v-alert>
 						<v-row>
