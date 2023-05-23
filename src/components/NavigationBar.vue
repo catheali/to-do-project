@@ -84,7 +84,8 @@
 
 <script >
 import PopNewProject from './PopNewProject.vue';
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
+import store from '@/store/index.js';
 
 export default {
 	components: {
@@ -98,7 +99,6 @@ export default {
 	},
 
 	computed: {
-		...mapActions('auth', ['clearAuthToken', 'loginAuth']),
 		...mapGetters('auth', ['getLogin', 'getUser']),
 		...mapGetters('navbar', ['getNavBar']),
 	},
@@ -111,7 +111,7 @@ export default {
 		},
 		userLogout() {
 			try {
-				this.clearAuthToken
+				store('auth').dispatch('auth/clearAuthToken');
 				this.$router.push('/login')
 			} catch (error) {
 				alert(`Error: ${error}`);
