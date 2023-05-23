@@ -78,7 +78,7 @@ export default {
 	},
 	async updateProject({ dispatch }, payload) {
 		let id = payload.id;
-		await axios.post(API + '/projects/' + id, {
+		await axios.put(API + '/project/' + id, {
 			title: payload.title ? payload.title : null,
 			content: payload.content ? payload.content : null,
 			status: payload.status ? payload.status : null,
@@ -93,7 +93,7 @@ export default {
 			})
 	},
 	async deleteProject({ dispatch, commit }, payload) {
-		await axios.delete(API + '/projects/' + payload)
+		await axios.delete(API + '/project/' + payload)
 			.then(async function () {
 				await dispatch('getAllProjects');
 				let myProjects = [];

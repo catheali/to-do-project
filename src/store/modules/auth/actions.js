@@ -12,6 +12,7 @@ export default {
 		})
 			.then(function (res) {
 				dispatch('setAuthToken', res.data.token)
+				dispatch('getUserInfo')
 				commit(types.SET_LOGIN, true)
 			})
 			.catch(function (error) {
@@ -96,7 +97,7 @@ export default {
 
 	async updateUser({dispatch}, payload) {
 		let id = payload.id;
-		await axios.post(API + '/user/' + id, {
+		await axios.put(API + '/user/' + id, {
 			name: payload.name,
 			image: payload.img === [] ? null : payload.img ,
 			role: payload.role,
