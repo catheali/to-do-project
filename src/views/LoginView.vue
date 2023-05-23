@@ -73,8 +73,9 @@ export default {
 			}
 			await this.loginAuth(this.formLogin)
 			if (this.getLogin) {
-				store('auth').dispatch('auth/getUserInfo');
 				this.$router.replace(this.$route.query.redirect || '/')
+				store('auth').dispatch('auth/getUserInfo');
+				
 			}
 			this.loading = false;
 			this.cleanError()
