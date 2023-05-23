@@ -79,3 +79,7 @@ Bem-vindo à documentação do projeto Vue To-Do List! Aqui você encontrará in
 ## Considerações Finais ✨
 
 Esta foi uma visão geral do projeto Vue To-Do List, suas tecnologias utilizadas, estrutura e funcionalidade. Sinta-se à vontade para explorar e testar cada um deles para aproveitar ao máximo a aplicação. Se tiver alguma dúvida, sugestão ou precisar de mais informações, não hesite em entrar em contato. Agradeço seu interesse no projeto To-Do List e espero que essa documentação seja útil para o seu desenvolvimento. Pretendo atualizar e melhorar constantemente. Se você gostou do projeto, não esqueça de deixar uma estrela ⭐.
+
+ ## Agradecimentos ✨
+
+- [Net Ninja](https://www.youtube.com/channel/UCW5YeuERMmlnqo4oq8vwUpg) : Estrutura visual do projeto. 
