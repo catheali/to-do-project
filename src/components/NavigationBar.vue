@@ -84,8 +84,8 @@
 
 <script >
 import PopNewProject from './PopNewProject.vue';
-import { mapGetters } from 'vuex';
-import store from '@/store/index.js';
+import { mapActions, mapGetters } from 'vuex';
+
 
 export default {
 	components: {
@@ -101,18 +101,21 @@ export default {
 	computed: {
 		...mapGetters('auth', ['getLogin', 'getUser']),
 		...mapGetters('navbar', ['getNavBar']),
+		...mapActions('auth', ['logoutUser'])
 	},
 	methods: {
 		showDrawer() {
 			this.drawer = !this.drawer
+			setTimeout(() => {
+				this.drawer = !this.drawer
+			}, 6000);
 		},
 		isLogged() {
 			return this.getLogin
 		},
 		userLogout() {
 			try {
-				store('auth').dispatch('auth/clearAuthToken');
-				this.$router.push('/login')
+				this.logoutUser
 			} catch (error) {
 				alert(`Error: ${error}`);
 			}
