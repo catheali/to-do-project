@@ -24,9 +24,14 @@
 								</span>
 								<span v-else>Entrar</span>
 							</v-btn>
-							<v-btn color="danger" outlined x-small class="mr-4">
-								Esqueci minha Senha
-							</v-btn>
+							<v-tooltip bottom>
+								<template v-slot:activator="{ on, attrs }">
+									<v-btn color="danger"  v-bind="attrs" v-on="on" outlined x-small class="mr-4">
+									Esqueci minha Senha
+									</v-btn>
+								</template>
+								<span>Em breve</span>
+							</v-tooltip>
 						</div>
 					</v-form>
 				</v-card>
