@@ -71,14 +71,15 @@
 </template>
     
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
+import store from '@/store/index.js';
 export default {
 	created() {
+		store('dashboard').dispatch('dashboard/getAllProjects');
 
 	},
 	computed: {
 		...mapGetters('dashboard', ['getProjects', 'getError']),
-		...mapActions('dashboard', ['getAllProjects']),
 		allProjects(){
 			let projects = this.getProjects;
 			projects.forEach(project => {
