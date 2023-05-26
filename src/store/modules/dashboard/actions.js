@@ -57,20 +57,23 @@ export default {
 		await axios.get(API + '/projects/' + payload)
 			.then(async function (res) {
 				let myProject = res.data;
-				let myProjects = [];
-				myProject.forEach(element => {
-					myProjects.push({
-						id: element.id,
-						userId: element.user_id,
-						name: element.name,
-						title: element.title,
-						content: element.content,
-						due: element.due_time,
-						status: element.status
-					})
-				});
-				await dispatch('getAllProjects');
-				return commit('setMyProjects', myProjects);
+				if(myProject.length > 0){
+					let myProjects = [];
+					myProject.forEach(element => {
+						myProjects.push({
+							id: element.id,
+							userId: element.user_id,
+							name: element.name,
+							title: element.title,
+							content: element.content,
+							due: element.due_time,
+							status: element.status
+						})
+					});
+					await dispatch('getAllProjects');
+					return commit('setMyProjects', myProjects);
+				}
+				return commit('setMyProjects', myProject);
 			})
 			// .catch(function (error) {
 			// 	alert(error.message);
@@ -92,12 +95,13 @@ export default {
 				alert('Deu ruim: ' + error.response.data.error);
 			})
 	},
-	async deleteProject({ dispatch, commit }, payload) {
+	async deleteProject({ dispatch}, payload) {
+		let user = store('auth').getters['auth/getUser'];
 		await axios.delete(API + '/project/' + payload)
 			.then(async function () {
 				await dispatch('getAllProjects');
-				let myProjects = [];
-				commit('setMyProjects', myProjects )
+				await dispatch('getMyProjects', user.id);
+				
 			})
 			.catch(function (error) {
 				
