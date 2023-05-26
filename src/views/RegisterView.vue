@@ -156,6 +156,7 @@ export default {
         ],
         passwordRules: [
             v => !!v || 'Password is required',
+			v => v.length >= 8 || 'Min 8 characters',
             v => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) || 'Password must contain at least lowercase letter, one number, a special character and one uppercase letter',
         ],
         firstcheckbox: false,
