@@ -75,6 +75,14 @@ export default {
 
 	},
 
+	async logoutUser({dispatch, commit}) {
+		await dispatch('clearAuthToken');
+		let myProjects = [];
+		commit('dashboard/setMyProjects', myProjects, {root: true});
+		router.push('/login');
+
+	},
+
 	async newUser({ dispatch }, payload) {
 		await axios.post(API + '/users', {
 			name: payload.name,
@@ -99,7 +107,7 @@ export default {
 		let id = payload.id;
 		await axios.put(API + '/user/' + id, {
 			name: payload.name,
-			image: payload.img === [] ? null : payload.img ,
+			image: payload.img ?? null ,
 			role: payload.role,
 		}, {
 			headers: {
@@ -161,7 +169,8 @@ export default {
 			}
 		}).then(function () {
 			alert('Usuário excluido com sucesso!');
-
+			let myProjects = [];
+			commit('setMyProjects', myProjects )
 			router.push('/login')
 			
 		})
