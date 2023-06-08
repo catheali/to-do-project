@@ -42,43 +42,44 @@ Bem-vindo à documentação do projeto Vue To-Do List! Aqui você encontrará in
 
 ## Funcionalidades Implementadas ✨
 
-- ### Listagem de Tarefas
+- ### Listagem de Projetos
 
-	A página inicial da aplicação exibe uma lista de todas as tarefas cadastradas. As tarefas são buscadas na API utilizando o Axios e exibidas em um componente de lista.
+	A página inicial da aplicação exibe uma lista de todos os projetos cadastradas de todos os usuarios. As tarefas são buscadas na API utilizando o Axios e exibidas.
+	
+- ### Listagem de Meus Projetos
 
-- ### Criação de Tarefas
+	Os usuários podem exibir uma lista de todos os proprios projetos cadastrados. As tarefas são buscadas na API utilizando o Axios e exibidas na pagina Meus Projetos.
 
-	Os usuários podem criar novas tarefas usando um formulário de criação. As informações da nova tarefa são enviadas para a API através de uma solicitação POST utilizando o Axios.
+- ### Criação de Projetos
 
-- ### Atualização de Tarefas
+	Os usuários podem criar novos projetos usando um formulário de criação. As informações são enviadas para a API através de uma solicitação POST utilizando o Axios.
 
-	Cada tarefa na lista exibe um botão de edição. Ao clicar no botão, os usuários são redirecionados para a página de edição da tarefa correspondente. Nessa página, eles podem atualizar o título, descrição e status da tarefa.
+- ### Atualização de Projeto
 
-- ### Exclusão de Tarefas 
+	Cada projeto na lista exibe um botão de edição. Ao clicar no botão, os usuários consegue editar o projeto corresponde, o título, descrição e status do projeto.
 
-	Cada tarefa na lista também exibe um botão de exclusão. Ao clicar no botão, os usuários são solicitados a confirmar a exclusão da tarefa. Se confirmado, a tarefa é removida da lista e excluída da API utilizando uma solicitação DELETE.
+- ### Exclusão de Projeto 
+
+	Cada projeto na lista também exibe um botão de exclusão. Ao clicar no botão, os usuários são solicitados a confirmar a exclusão da tarefa. Se confirmado, o projeto é removido da lista e excluída da API utilizando uma solicitação DELETE.
 
 
 - ### Listagem de Usuarios
 
-	A página Team da aplicação exibe uma lista de todos usuarios cadastrados. As tarefas são buscadas na API utilizando o Axios e exibidas em um componente de lista.
+	A aplicação exibe uma lista de todos usuarios cadastrados. Os usuários são buscadas na API utilizando o Axios e exibidas na pagina Team.
 
-
-- ### Listagem de Usuarios 
-
-	A página Team da aplicação exibe uma lista de todos usuarios cadastrados. As tarefas são buscadas na API utilizando o Axios e exibidas em um componente de lista.
 
 ## Instalação e Execução ✨
 
 1. Clone o repositório para o seu ambiente local.
-2. Execute o comando `npm install` para instalar as dependências.
-3. Configure a URL da API no arquivo `src\store\modules\api.js`.
-4. Execute o comando `npm run serve` para iniciar o servidor de desenvolvimento.
-5. Acesse a aplicação no navegador através da URL `http://localhost:8080`.
+2. Clone o repositório da [API](https://github.com/catheali/todo-ninja-back.git). 
+4. No diretório, execute o comando `npm install` para instalar as dependências.
+5. Configure a URL da API no arquivo `src\store\modules\api.js`.
+6. Execute o comando `npm run serve` para iniciar o servidor de desenvolvimento.
+7. Acesse a aplicação no navegador através da URL `http://localhost:8080`.
 
 ## Considerações Finais ✨
 
-Esta foi uma visão geral do projeto Vue To-Do List, suas tecnologias utilizadas, estrutura e funcionalidade. Sinta-se à vontade para explorar e testar cada um deles para aproveitar ao máximo a aplicação. Se tiver alguma dúvida, sugestão ou precisar de mais informações, não hesite em entrar em contato. Agradeço seu interesse no projeto To-Do List e espero que essa documentação seja útil para o seu desenvolvimento. Pretendo atualizar e melhorar constantemente. Se você gostou do projeto, não esqueça de deixar uma estrela ⭐.
+Esta foi uma visão geral do projeto Vue To-Do List, suas tecnologias utilizadas, estrutura e funcionalidade. Sinta-se à vontade para explorar e testar cada um deles para aproveitar ao máximo a aplicação. Se tiver alguma dúvida, sugestão ou precisar de mais informações, não hesite em entrar em contato. Agradeço seu interesse no projeto To-Do List e espero que essa documentação seja útil para o seu aprendizado. Pretendo atualizar e melhorar constantemente. Se você gostou do projeto, não esqueça de deixar uma estrela ⭐.
 
  ## Agradecimentos ✨
 
