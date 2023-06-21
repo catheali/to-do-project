@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1 class="subheading grey--text text-center">Minha conta</h1>
+		<h1 class="subheading grey--text text-center">My Account</h1>
 		<v-card class="mx-auto my-5" max-width="800" outlined>
 			<v-container >
 				<v-row class="justify-center ma-2">
@@ -21,19 +21,25 @@
 								<v-icon left>
 									mdi-account
 								</v-icon>
-								Dados Pessoais
+								<span class="text-right">Account</span>
+							</v-tab>
+							<v-tab class="d-flex justify-start">
+								<v-icon left>
+									mdi-gavel
+								</v-icon>
+								<span class="text-right">Admin options</span>
 							</v-tab>
 							<v-tab class="d-flex justify-start">
 								<v-icon left>
 									mdi-lock
 								</v-icon>
-								<span class="text-right">Segurança</span>
+								<span class="text-right">Security</span>
 							</v-tab>
 							<v-tab class="d-flex justify-start mb-5">
 								<v-icon left>
 									mdi-access-point
 								</v-icon>
-								<span class="text-right"> Opções Avançadas</span>
+								<span class="text-right">Advanced options</span>
 							</v-tab>
 							<v-tab-item v-if="getUser" class="mb-5">
 								<v-card  flat>
@@ -52,18 +58,19 @@
 										</v-row>
 										<v-row>
 											<v-col cols="11" class="d-flex justify-space-between ">
-											<span> Alterar informações pessoais e avatar:</span>
+											<span>Change personal information and avatar:</span>
 											<PopUpdateInfo :user="getUser"/>
 										</v-col>
 										</v-row>
 									</v-card-text>
 								</v-card>
 							</v-tab-item>
+							<v-tab-item></v-tab-item>
 							<v-tab-item class="mb-5">
 								<v-card flat>
 									<v-card-text>
 										<v-col cols="11" class="d-flex justify-space-between ">
-											<span> Alterar senha:</span>
+											<span>Change Password:</span>
 											<PopResetPassword/>
 										</v-col>
 										<v-divider width="94%"></v-divider>
@@ -74,7 +81,7 @@
 								<v-card flat>
 									<v-card-text>
 									<v-col cols="11" class="d-flex justify-space-between">
-										<span>Excluir Conta</span>
+										<span>Delete account</span>
 										<PopDeleteUser/>
 									</v-col>		
 									<v-divider width="94%"></v-divider>
@@ -99,9 +106,6 @@ export default {
 		PopUpdateInfo,
 		PopResetPassword,
 		PopDeleteUser
-	},
-	created(){
-		
 	},
 	computed: {
 		...mapGetters('auth', ['getUser']),
