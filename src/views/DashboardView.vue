@@ -9,10 +9,10 @@
 							<v-icon left small>
 								mdi-folder</v-icon>
 							<span class="caption text-lowercase">
-								By project Title</span>
+								By project title</span>
 						</v-btn>
 					</template>
-					<span>Ordenar por título </span>
+					<span>order by Title</span>
 				</v-tooltip>
 				<v-tooltip top>
 					<template v-slot:activator="{ on, attrs }">
@@ -22,7 +22,7 @@
 							<span class="caption text-lowercase">By person</span>
 						</v-btn>
 					</template>
-					<span>Ordenar por usuário </span>
+					<span>order by Person</span>
 				</v-tooltip>
 				<v-tooltip top>
 					<template v-slot:activator="{ on, attrs }">
@@ -32,7 +32,7 @@
 							<span class="caption text-lowercase">By status</span>
 						</v-btn>
 					</template>
-					<span>Ordenar por status </span>
+					<span>order by Status </span>
 				</v-tooltip>
 			</v-row>
 			<v-card v-for=" project in allProjects" :key="project.title" flat>
@@ -47,7 +47,7 @@
 					</v-col>
 					<v-col cols="6" sm="4" md="2">
 						<div class="caption grey--text">Due by</div>
-						<div> <span>{{ project.due }}</span> </div>
+						<div> <span>{{ formatData(project.due) }}</span> </div>
 					</v-col>
 					<v-col cols="2" sm="4" md="2">
 						<div>
@@ -62,7 +62,8 @@
 			</v-card>
 		</v-container>
 		<v-container v-else>
-			<v-alert border="right" colored-border type="error" elevation="2"> Parece que ninguém criou nenhum projeto...
+			<v-alert border="right" colored-border type="error" elevation="2">
+				<span>Looks like no one has created any projects...</span>
 			</v-alert>
 		</v-container>
 		<v-alert v-show="getError.valid" border="right" colored-border type="error" elevation="2">
@@ -92,7 +93,15 @@ export default {
 	methods: {
 		sortBy(prop) {
 			this.getProjects.sort((a, b) => a[prop] < b[prop] ? -1 : 1)
+		},
+		formatData(data) {
+				let str = data;
+				let ano = str.substring(0, 4)
+				let mes = str.substring(5, 7)
+				let dia = str.substring(8,10)
+				return dia+ '/'+ mes+'/'+ano;
 		}
+	
 	}
 }
 </script>

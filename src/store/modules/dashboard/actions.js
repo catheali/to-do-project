@@ -1,6 +1,6 @@
-import API from "../api";
-import axios from 'axios';
-import store from '@/store/index.js';
+import API from "../api"
+import axios from 'axios'
+import store from '@/store/index.js'
 
 export default {
 	async createNewProject({ commit, dispatch }, payload) {
@@ -13,8 +13,8 @@ export default {
 			user_id: user.id,
 		})
 			.then(async function () {
-				await dispatch('getAllProjects');
-				await dispatch('getMyProjects', user.id);
+				await dispatch('getAllProjects')
+				await dispatch('getMyProjects', user.id)
 			})
 			.catch(function (error) {
 				commit('setError', {
@@ -38,25 +38,23 @@ export default {
 						due: element.due_time,
 						status: element.status
 					})
-				});
-
-				return commit('setProjects', projects);
+				})
+				return commit('setProjects', projects)
 
 			})
 			.catch(function (error) {
 				commit(
 					'setError', {
 					valid: true,
-					message: 'Aconteceu algum problema ao buscar seus Projetos, verifique o erro e entre em contato: ' + error.data.message
+					message: 'There was a problem when searching for your Projects, check the error and contact: ' + error.data.message
 				})
-
 				return error
 			})
 	},
 	async getMyProjects({ commit, dispatch }, payload) {
 		await axios.get(API + '/projects/' + payload)
 			.then(async function (res) {
-				let myProject = res.data;
+				let myProject = res.data
 				if(myProject.length > 0){
 					let myProjects = [];
 					myProject.forEach(element => {
@@ -70,43 +68,38 @@ export default {
 							status: element.status
 						})
 					});
-					await dispatch('getAllProjects');
-					return commit('setMyProjects', myProjects);
+					await dispatch('getAllProjects')
+					return commit('setMyProjects', myProjects)
 				}
-				return commit('setMyProjects', myProject);
+				return commit('setMyProjects', myProject)
 			})
-			// .catch(function (error) {
-			// 	alert(error.message);
-			// })
 	},
 	async updateProject({ dispatch }, payload) {
-		let id = payload.id;
+		let id = payload.id
 		await axios.put(API + '/project/' + id, {
 			title: payload.title ? payload.title : null,
 			content: payload.content ? payload.content : null,
 			status: payload.status ? payload.status : null,
 			due_time: payload.due ? payload.due : null,
 		}).then(async function () {
-			let user = store('auth').getters['auth/getUser'];
-			await dispatch('getMyProjects', user.id);
-			await dispatch('getAllProjects');
+			let user = store('auth').getters['auth/getUser']
+			await dispatch('getMyProjects', user.id)
+			await dispatch('getAllProjects')
 		})
 			.catch(function (error) {
-				alert('Deu ruim: ' + error.response.data.error);
+				alert('There was a problem:' + error.response.data.error)
 			})
 	},
 	async deleteProject({ dispatch}, payload) {
-		let user = store('auth').getters['auth/getUser'];
+		let user = store('auth').getters['auth/getUser']
 		await axios.delete(API + '/project/' + payload)
 			.then(async function () {
-				await dispatch('getAllProjects');
-				await dispatch('getMyProjects', user.id);
+				await dispatch('getAllProjects')
+				await dispatch('getMyProjects', user.id)
 				
 			})
 			.catch(function (error) {
-				
-				alert('Deu ruim: ' + error.response.data.error);
+				alert('There was a problem:' + error.response.data.error)
 			})
 	}
-
 }

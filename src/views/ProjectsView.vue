@@ -22,7 +22,7 @@
 								By project Title</span>
 						</v-btn>
 					</template>
-					<span>Ordenar por título </span>
+					<span>order by Title</span>
 				</v-tooltip>
 				<v-tooltip top>
 					<template v-slot:activator="{ on, attrs }">
@@ -32,7 +32,7 @@
 							<span class="caption text-lowercase">By status</span>
 						</v-btn>
 					</template>
-					<span>Ordenar por status </span>
+					<span>order by Status</span>
 				</v-tooltip>
 			</v-row>
      <v-expansion-panel 
@@ -50,10 +50,10 @@
       <v-expansion-panel-content >
         <div class="d-flex justify-space-between " > 
           <div>
-            <span class="caption grey--text "> Due by {{ project.due }}</span> 
+            <span class="caption grey--text "> Due by {{ formatData(project.due) }}</span> 
           </div>
           <div>
-           <span> Autor: {{ project.name }} </span>
+           <span> Author: {{ project.name }} </span>
           </div>
         </div>
         <div>
@@ -107,7 +107,14 @@ methods:{
 	},
 	sortBy(prop) {
 			this.myProjects.sort((a, b) => a[prop] < b[prop] ? -1 : 1)
-		}
+	},
+	formatData(data) {
+				let str = data;
+				let ano = str.substring(0, 4)
+				let mes = str.substring(5, 7)
+				let dia = str.substring(8,10)
+				return dia+ '/'+ mes+'/'+ano;
+	}
 }
 }
 </script>

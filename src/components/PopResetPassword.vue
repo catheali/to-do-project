@@ -16,7 +16,7 @@
 							<v-col cols="12">
 							<v-text-field v-model="formRst.oldPassword" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
 								:type="show2 ? 'text' : 'password'" @click:append="show2 = !show2" :rules="passwordRules"
-								label="Sua senha antiga " required></v-text-field>
+								label="Current Password" required></v-text-field>
 						</v-col>
 						</v-row>
 						<v-row>

@@ -22,15 +22,15 @@
 								<span v-if="loading">
 									<v-progress-circular indeterminate color="green"></v-progress-circular>
 								</span>
-								<span v-else>Entrar</span>
+								<span v-else>Login</span>
 							</v-btn>
 							<v-tooltip bottom>
 								<template v-slot:activator="{ on, attrs }">
 									<v-btn color="danger"  v-bind="attrs" v-on="on" outlined x-small class="mr-4">
-									Esqueci minha Senha
+									Forgot Password?
 									</v-btn>
 								</template>
-								<span>Em breve</span>
+								<span>soon will be implemented.</span>
 							</v-tooltip>
 						</div>
 					</v-form>
@@ -74,17 +74,16 @@ export default {
 		validate: async function () {
 			this.loading = true;
 			if ((!this.formLogin.email) || (!this.formLogin.password) || (this.formLogin.password.length < 7)) {
-				return;
+				return
 			}
 			await this.loginAuth(this.formLogin)
 			if (this.getLogin) {
 				this.$router.replace(this.$route.query.redirect || '/')
-				store('auth').dispatch('auth/getUserInfo');
-				
+				store('auth').dispatch('auth/getUserInfo')
 			}
-			this.loading = false;
+			this.loading = false
 			this.cleanError()
-		
+
 		},
 		cleanError(){
 			setTimeout(()=>{

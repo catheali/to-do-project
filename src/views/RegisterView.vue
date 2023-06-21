@@ -12,7 +12,7 @@
             class="pa-5">
             <v-toolbar-title 
             class="text-uppercase grey--text text-center">
-                 <span>Registre-se</span>
+                 <span>Register now</span>
             </v-toolbar-title>
             <v-form 
             ref="form" 
@@ -106,7 +106,7 @@
                  color="success" 
                  class="mr-4" 
                  @click.prevent="validateRegister">
-                    Criar conta
+                <span>Create Account</span>
                 </v-btn>
                 <v-btn 
                     color="primary"
@@ -127,7 +127,7 @@
 </template>
   
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
     data: () => ({
         valid: false,
@@ -138,7 +138,6 @@ export default {
         password: '',
         role:''
        },
-       roles: ['Bailarina', 'BodyBuilder', 'Bruxa', 'King', 'Modelo', 'Ruler', 'Soldier', 'Poet'],
        password2:"",
        error:{
        valid: false,
@@ -160,13 +159,15 @@ export default {
             v => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) || 'Password must contain at least lowercase letter, one number, a special character and one uppercase letter',
         ],
         firstcheckbox: false,
-       
-       
     }),
     computed: {
-        validado(){
+		...mapGetters('team',['getRoles']),
+        validado() {
             return !this.valid
-        } 
+        },
+		roles() {
+			return this.getRoles
+		}
     },
     methods: {
        ...mapActions('auth', ['newUser']),
@@ -175,7 +176,7 @@ export default {
              if( this.formRegister.password !== this.password2){
                 this.error = {
                     valid: true,
-                    message: "As senhas não coincidem, verifique e tente novamente :v "
+                    message: "Passwords do not match, check and try again :v "
                 }
                 return this.error;
              }

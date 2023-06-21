@@ -13,7 +13,7 @@
 						<v-text-field v-model="formEdit.name" label="Full Name">
 						</v-text-field>
 						<v-file-input accept="image/png, image/jpeg, image/bmp" placeholder="Send your avatar picture"
-							prepend-icon="" append-icon="mdi-camera" label="Alterar Foto"
+							prepend-icon="" append-icon="mdi-camera" label="Send your avatar picture"
 							v-model="formEdit.img"></v-file-input>
 						<v-select :items="roles" item-text="text" v-model="formEdit.role"
 							label="What is your role?"></v-select>

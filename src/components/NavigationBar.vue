@@ -5,13 +5,13 @@
 				<v-app-bar-nav-icon @click="showDrawer"></v-app-bar-nav-icon>
 			</div>
 			<v-toolbar-title class="text-uppercase grey--text">
-				<span class="font-weight-light">Todo</span>
-				<span>LIST</span>
+				<span class="font-weight-light">TODO</span>
+				<span>project</span>
 			</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<div v-show="!getLogin">
 				<v-btn outlined color="accent" route :to="{ name: 'register' }">
-					<span>Nova Conta</span>
+					<span>New Account</span>
 					<v-icon right>
 						mdi-account-plus
 					</v-icon>

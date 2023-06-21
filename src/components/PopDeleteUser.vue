@@ -1,31 +1,26 @@
 <template>
 	<v-dialog v-model="dialog" max-width="600px">
 		<template v-slot:activator="{ on }">
-			<v-btn outlined color="danger" small v-on="on">Excluir</v-btn>
+			<v-btn outlined color="danger" small v-on="on">Delete</v-btn>
 		</template>
 		<v-card >
 			<v-card-title>
-				<h4 class=" grey--text"> Tem certeza que gostaria de excluir seu usuário? </h4>
+				<h4 class=" grey--text">This action is irreversible. Are you sure you want to do this?</h4>
 				<v-card-text>
-					<v-list>
-						<v-list-item> 
-							<v-list-item-icon>
-								<v-icon ></v-icon>
-								Não será possivel recuperar sua conta ou projetos !
-							</v-list-item-icon>
-						</v-list-item>
-					</v-list>
+					<v-alert type="error" class="text-align-center">
+						<span>It will not be possible to recover your account or projects! </span>
+					</v-alert>
 					<v-alert v-show="getErrorRstPswd.valid" border="right" colored-border type="error" elevation="2">
 						{{ getErrorRstPswd.message }}</v-alert>
 						<v-row>
 							<v-col cols="12">
 							<v-text-field v-model="validate.password" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
 								:type="show ? 'text' : 'password'" @click:append="show = !show" :rules="passwordRules"
-								label="Confirme sua senha" required></v-text-field>
+								label="Type your Password" required></v-text-field>
 						</v-col>
 						</v-row>
 						<div class="mt-5 d-flex justify-space-between ">
-						<v-btn  color="danger" dark @click="deleteUserById">Sim</v-btn>
+						<v-btn  color="danger" dark @click="deleteUserById">Yes</v-btn>
 						<v-btn  outlined color="warning" @click="closeModal">Cancel</v-btn>
 						</div>
 				</v-card-text>
